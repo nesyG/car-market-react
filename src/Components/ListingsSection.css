@@ -1,0 +1,10 @@
+.data-container {
+    border: 1px grey solid;
+    flex-grow: 1;
+    margin-left: 1rem;
+}
+
+.sort-section {
+    margin-top: 1rem;
+    text-align: center;
+}
