@@ -1,6 +1,7 @@
 import React from "react";
 import BrowseButtons from "../Components/BrowseButtons"
 import ListingsSection from "../Components/ListingsSection";
+import PageToggleButton from "../Components/PageToggleButton";
 import "./Home.css"
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
         <div className="hero-section">
             <BrowseButtons />
             <ListingsSection />
+            <PageToggleButton />
         </div>
         </>
     )
