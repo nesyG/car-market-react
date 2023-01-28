@@ -1,11 +1,13 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./Login.css";
 import axios from "axios";
+import {StoreContext , StoreProvider} from "../Stores/TokenStore"
 
 const Login = () => {
+ 
   let navigate= useNavigate();
 
   const [onLoginHover, setOnLoginHover] = useState(false);
@@ -35,17 +37,23 @@ const Login = () => {
     setFormValue({ ...formValue, [name]: value });
   };
 
-   const handlePost = (e) => {
+ 
+
+  const store = React.useContext(StoreContext)
+   const handlePost =  async (e) => {
     e.preventDefault();
-    let res = axios({
+    let res =  await axios({
       method: "POST",
       headers: { 
         "Content-Type": "application/x-www-form-urlencoded"
       },
       data: formValue,
       url: "https://api.baasic.com/beta/new-react-project/login",
-    }).then(res => res.data).then(navigate("/home"))
-    console.log(res)
+    })
+    let data = res.data
+    store.addToken(data)
+    navigate("/home")
+  
   };
 
   return (
