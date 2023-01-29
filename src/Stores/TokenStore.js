@@ -12,7 +12,7 @@ export const StoreProvider = ({children}) => {
 })
 
 )
-console.log(tokenStore.token)
+
 return (
     <StoreContext.Provider value={tokenStore}>{children}</StoreContext.Provider>
     )

@@ -52,6 +52,7 @@ const Login = () => {
     })
     let data = res.data
     store.addToken(data)
+    console.log(store.token)
     navigate("/home")
   
   };

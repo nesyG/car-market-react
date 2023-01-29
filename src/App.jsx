@@ -4,6 +4,7 @@ import Login from "./Pages/Login";
 import Home from "./Pages/Home"
 import Listing from "./Pages/Listing/Listing"
 import {StoreProvider} from "./Stores/TokenStore";
+import {PaginationProvider} from "./Stores/PaginationStore";
 
 const App = () => {
   // const [getToken, setGetToken] = useState("");
@@ -13,6 +14,8 @@ const App = () => {
   // }
 
   return (
+ 
+    <PaginationProvider>
     <StoreProvider>
     <div>
       <Routes>
@@ -22,6 +25,8 @@ const App = () => {
       </Routes>
     </div>
     </StoreProvider>
+    </PaginationProvider>
+  
   );
 };
 
