@@ -37,8 +37,6 @@ const Login = () => {
     setFormValue({ ...formValue, [name]: value });
   };
 
- 
-
   const store = React.useContext(StoreContext)
    const handlePost =  async (e) => {
     e.preventDefault();
@@ -54,7 +52,6 @@ const Login = () => {
     store.addToken(data)
     console.log(store.token)
     navigate("/home")
-  
   };
 
   return (
