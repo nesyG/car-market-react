@@ -1,9 +1,8 @@
-import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./SingleCarItem.css"
 
-const SingleCarItem = () => {  
+const SingleCarItem = () => {   //For future implementation
     let navigate = useNavigate()
 
     function getThisListing () {

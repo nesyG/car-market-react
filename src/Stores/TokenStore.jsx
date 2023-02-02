@@ -4,7 +4,6 @@ import { useLocalStore } from "mobx-react";
 export const StoreContext = React.createContext();
 
 export const StoreProvider = ({ children }) => {
-    
   const tokenStore = useLocalStore(() => ({
     token: "",
     addToken: (token) => {

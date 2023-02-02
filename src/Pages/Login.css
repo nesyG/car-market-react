@@ -1,45 +1,61 @@
 .welcome-container {
-    color: rgb(35, 5, 63);
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
+  color: rgb(7, 1, 14);
+  display: flex;
+  font-weight: 400;
+  justify-content: center;
+  padding-top: 6rem;
 }
 
 .login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 40rem;
-    color: rgb(92, 91, 91);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25rem;
+  color: rgb(92, 91, 91);
 }
 
-.login-btn {
-    border: 1px solid gray;
-    padding: .7rem 2rem;
-    border-radius: 1rem;
+.form-control {
+  margin: 0.6rem 0 1rem 0;
 }
 
-.login-hover {
-    color: black;
+.label-text {
+  color: black;
+  font-weight: 400;
 }
 
-.register-btn {
-    border: 1px solid gray;
-    padding: .7rem .9rem;
-    border-radius: 1rem;
+.btn {
+  font-size: 1.3rem;
+  border: 1px solid grey;
 }
 
-.login-form-container {
-    display: flex;
-    flex-direction: column;
-    margin: 1rem 1rem 2rem 1rem;
+.login-card-container {
+  width: 100%;
+  display: flex;
+  background-color: rgb(32, 32, 32);
 }
 
-.label-container {
-    margin-bottom: .4rem;
+.login-card {
+  width: 49% !important;
+  border: none !important;
+  text-align: center;
+  background: none;
 }
 
-.input-container {
-    margin-bottom: .4rem;
+.main-text {
+  width: 50%;
+  margin-top: 1rem;
+  margin-left: 13rem;
+  padding: 1rem 1.5rem;
+  background-color: aliceblue;
+  font-weight: 500;
+  font-size: 2rem;
+  color: rgb(0, 0, 0);
+}
+
+.lorem {
+  margin-top: 2.5rem;
+  padding: 0 12rem;
+  font-weight: 300;
+  font-size: 1.3rem;
+  color: aliceblue;
 }

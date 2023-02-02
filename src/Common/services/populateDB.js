@@ -1,10 +1,9 @@
-import carList from "./carsList.json";
 import backupCars from "./backup.json";
 import axios from "axios";
 import { StoreContext } from "../../Stores/TokenStore";
 
 function populateDB() {
-  //import context for tokenStore
+  //import tokenStore for authorization
   const tokenStore = React.useContext(StoreContext);
 
   //map through all car objects and add a random date (for later sorting purposes)

@@ -6,7 +6,6 @@ import { runInAction } from "mobx";
 export const DataContext = React.createContext();
 
 export const DataProvider = ({ children }) => {
-  
   const dataStore = useLocalStore(() => ({
     carData: [],
     getCarData: async (token) => {
@@ -16,7 +15,7 @@ export const DataProvider = ({ children }) => {
           Authorization: `bearer ${token}`,
           "Content-Type": "application/json",
         },
-        url: "https://api.baasic.com/beta/new-react-project/resources/car?page=1",
+        url: "https://api.baasic.com/beta/new-react-project/resources/car?page=1&rpp=12",
       });
       let info = await res.data;
       runInAction(() => {

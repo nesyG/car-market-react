@@ -1,25 +1,57 @@
 .data-container {
-    border: 1px grey solid;
-    flex-grow: 1;
-    margin-left: 1rem;
+  border: 1px grey solid;
+  width: 80%;
+  height: 100%;
+  margin-left: 1rem;
+  background-color: rgb(80, 80, 80);
 }
 
 .sort-section {
-    margin-top: 1rem;
-    text-align: center;
+  margin-top: 1rem;
+  text-align: center;
 }
 
-.card {
-    display: flex;
-    flex-direction: column;
-    width: 20%;
-    margin: 1.5rem;
-    border: 1px solid grey;
-    padding: 1rem;
+.car-card {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  margin: 1.5rem;
+  border: 1px solid grey;
+  padding: 0.5rem;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
 }
 
 .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.sort-container {
+  width: 10vw;
+  margin-left: 0.5rem;
+}
+
+.sorting-section {
+  color: aliceblue;
+  display: flex;
+  margin-top: 1.2rem;
+  margin-left: 4.5rem;
+}
+.material-symbols-outlined {
+  text-align: center;
+  font-size: 2rem;
+  padding: 1rem 0;
+}
+
+.card-title {
+  padding-left: 0.8rem;
+}
+.price-text {
+  font-weight: 500;
+  font-size: 1.2rem;
 }

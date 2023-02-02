@@ -1,121 +1,125 @@
-import React, {useState, useContext} from "react";
-import { useNavigate } from "react-router-dom";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import "./Login.css";
+import React, { useState } from "react";
 import axios from "axios";
-import {StoreContext , StoreProvider} from "../Stores/TokenStore"
+import { useNavigate } from "react-router-dom";
+import { StoreContext } from "../Stores/TokenStore";
+import "./Login.css";
 
 const Login = () => {
- 
-  let navigate= useNavigate();
+  const store = React.useContext(StoreContext);
+  let navigate = useNavigate();
 
-  const [onLoginHover, setOnLoginHover] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
-
-  const initialValues = {
+  //Local state holding user input
+  const [formValue, setFormValue] = useState({
     username: "",
     password: "",
-  } 
-
-  const validationSchema = Yup.object().shape({
-    email: Yup.string().required("This field is required!"),
-    password: Yup.string().required("This field is required!"),
+    grant_type: "password",
   });
 
-  function toggleLoginChange() {
-    setOnLoginHover(!onLoginHover);
-  }
-  //post request on login
-  const [formValue, setFormValue] = useState({ username: "", password: "", grant_type: "password" });
-
+  //Function to set all of user input into local state
   const handleInput = (e) => {
     const { name, value } = e.target;
     setFormValue({ ...formValue, [name]: value });
   };
 
-  const store = React.useContext(StoreContext)
-   const handlePost =  async (e) => {
+  //Function handling API POST request
+  const handlePost = async function (e) {
     e.preventDefault();
-    let res =  await axios({
+    let res = await axios({
       method: "POST",
-      headers: { 
-        "Content-Type": "application/x-www-form-urlencoded"
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
       },
       data: formValue,
       url: "https://api.baasic.com/beta/new-react-project/login",
-    })
-    let data = res.data
-    store.addToken(data)
-    console.log(store.token)
-    navigate("/home")
+    });
+    let data = await res.data;
+    store.addToken(data);
+    navigate("/home");
   };
 
   return (
     <div>
-      <h1 className="welcome-container">Welcome to THE Car Market</h1>
+      <h1 className="welcome-container">THE Car Market</h1>
       <div className="login-container">
-        <h3
-          className={onLoginHover ? "login-btn login-hover" : "login-btn"}
-          onMouseOver={toggleLoginChange}
-          onMouseLeave={toggleLoginChange}
-          onClick={() => setIsLoginOpen(!isLoginOpen)}
-        >
-          Login
-        </h3>
-        {isLoginOpen && (
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={handlePost}
+        {isLoginOpen == false ? (
+          <h3
+            className="btn btn-light"
+            onClick={() => {
+              setIsLoginOpen(!isLoginOpen);
+            }}
           >
-            <Form>
-              <div className="login-form-container">
-                <label htmlFor="username">username</label>
-                <Field
-                  name="username"
-                  type="username"
-                  className="form-control"
-                  value={formValue.username}
-                  onChange={handleInput}
-                  placeholder="janedoe123"
-                />
-              </div>
-
-              <div className="login-form-container ">
-                <label htmlFor="password">Password</label>
-                <Field
-                  name="password"
-                  type="password"
-                  className="form-control"
-                  value={formValue.password}
-                  onChange={handleInput}
-                />
-              </div>
-
-              <div className="form-group">
-                <button
-                  type="submit"
-                  className="btn btn-secondary btn-block"
-                  onClick={handlePost}
-                >
-                  <span>Login</span>
-                </button>
-              </div>
-
-              {/* {message && (
-               <div className="form-group">
-                 <div className="alert alert-danger" role="alert">
-                   {message}
-                 </div>
-               </div>
-             )} */}
-            </Form>
-          </Formik>
+            Login
+          </h3>
+        ) : (
+          <div>
+            <div class="form-group">
+              <label for="username" className="label-text">
+                Username
+              </label>
+              <input
+                name="username"
+                type="username"
+                className="form-control"
+                value={formValue.username}
+                onChange={handleInput}
+                placeholder="janedoe123"
+              />
+            </div>
+            <div class="form-group">
+              <label for="password" className="label-text">
+                Password
+              </label>
+              <input
+                name="password"
+                type="password"
+                className="form-control"
+                value={formValue.password}
+                onChange={handleInput}
+              />
+            </div>
+            <button
+              type="submit"
+              onClick={handlePost}
+              className="btn btn-secondary"
+            >
+              Login
+            </button>
+          </div>
         )}
+      </div>
+      <div className="login-card-container">
+        <div class="card login-card">
+          <div class="card-body">
+            <h3 class="card-title rounded main-text">
+              Extensive Choice of Cars
+            </h3>
+            <p class="card-text lorem">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur.
+            </p>
+          </div>
+        </div>
+        <div class="card login-card">
+          <div class="card-body">
+            <h3 class="card-title rounded  main-text">
+              All Parts in one place
+            </h3>
+            <p class="card-text lorem">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

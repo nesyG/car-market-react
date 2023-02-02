@@ -4,7 +4,6 @@ import { useLocalStore } from "mobx-react";
 export const SortingContext = React.createContext();
 
 export const SortingProvider = ({ children }) => {
-    
   const sortingStore = useLocalStore(() => ({
     sortData: "",
     setSortData: (info) => {

@@ -9,9 +9,25 @@ const PageToggleButton = (props) => {
   return useObserver(() => {
     return (
       <div className="pagination-section">
-        <button onClick={()=> {paginationStore.previousPage(); props.changePage()}}>Previous Page</button>
-        <span className="currentPage">{paginationStore.page}</span>
-        <button onClick={()=> {paginationStore.nextPage(); props.changePage()}}>Next Page</button>
+        <button
+          class="btn btn-light"
+          onClick={() => {
+            paginationStore.previousPage();
+            props.changePage();
+          }}
+        >
+          Previous Page
+        </button>
+        <span className="currentPage page-link">{paginationStore.page}</span>
+        <button
+          class="btn btn-light"
+          onClick={() => {
+            paginationStore.nextPage();
+            props.changePage();
+          }}
+        >
+          Next Page
+        </button>
       </div>
     );
   });
