@@ -9,6 +9,9 @@ export const SortingProvider = ({ children }) => {
     setSortData: (info) => {
       sortingStore.sortData = info;
     },
+    resetSortData: () => {
+      sortingStore.sortData = ""
+    }
   }));
 
   return (

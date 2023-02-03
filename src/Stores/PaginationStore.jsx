@@ -7,7 +7,7 @@ export const PaginationProvider = ({ children }) => {
   const paginationStore = useLocalStore(() => ({
     page: 1,
     nextPage: () => {
-      paginationStore.page += 1;
+        paginationStore.page += 1;
     },
     previousPage: () => {
       if (paginationStore.page === 1) {
@@ -16,6 +16,9 @@ export const PaginationProvider = ({ children }) => {
         paginationStore.page -= 1;
       }
     },
+    resetDefaultPage: () => {
+      paginationStore.page = 1
+    }
   }));
 
   return (

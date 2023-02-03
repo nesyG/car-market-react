@@ -19,6 +19,15 @@ export const BrowseProvider = ({ children }) => {
     getBrowsingData: (prop, value) => {
       browseStore.browsingData = { ...browseStore.browsingData, [prop]: value };
     },
+    resetBrowseState: () => {
+      browseStore.browsingData = {
+        car: "",
+      car_model: "",
+      car_model_year: "",
+      car_color: "",
+      };
+      browseStore.params = {}
+    }
   }));
 
   return (

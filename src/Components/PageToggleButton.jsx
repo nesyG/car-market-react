@@ -1,10 +1,18 @@
 import React from "react";
 import { useObserver } from "mobx-react";
 import { PaginationContext } from "../Stores/PaginationStore";
+import { DataContext } from "../Stores/DataStore";
 import "./PageToggleButton.css";
 
 const PageToggleButton = (props) => {
   const paginationStore = React.useContext(PaginationContext);
+  const dataStore = React.useContext(DataContext)
+
+  function checkPageData () {
+    if (dataStore.carData.item === 0 && paginationStore.page > 1) {
+      return
+    }
+  }
 
   return useObserver(() => {
     return (
@@ -22,6 +30,7 @@ const PageToggleButton = (props) => {
         <button
           class="btn btn-light"
           onClick={() => {
+            checkPageData();
             paginationStore.nextPage();
             props.changePage();
           }}

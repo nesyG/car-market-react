@@ -11,6 +11,11 @@
   text-align: center;
 }
 
+.spinner {
+ padding: 10rem 10rem 30rem 10rem;
+  color: aliceblue;
+}
+
 .car-card {
   display: flex;
   flex-direction: column;
@@ -40,7 +45,7 @@
   color: aliceblue;
   display: flex;
   margin-top: 1.2rem;
-  margin-left: 4.5rem;
+  margin-left: 5.4rem;
 }
 .material-symbols-outlined {
   text-align: center;

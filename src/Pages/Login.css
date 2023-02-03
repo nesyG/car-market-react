@@ -1,5 +1,10 @@
+.html {
+  height: 100%;
+}
+
 .welcome-container {
   color: rgb(7, 1, 14);
+  height: 20%;
   display: flex;
   font-weight: 400;
   justify-content: center;
@@ -7,10 +12,11 @@
 }
 
 .login-container {
+  height: 20rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 25rem;
+  
   color: rgb(92, 91, 91);
 }
 
@@ -20,7 +26,7 @@
 
 .label-text {
   color: black;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .btn {
@@ -30,7 +36,10 @@
 
 .login-card-container {
   width: 100%;
+  height: 40%;
   display: flex;
+  padding-top: 2rem;
+
   background-color: rgb(32, 32, 32);
 }
 
@@ -41,10 +50,16 @@
   background: none;
 }
 
+.login-card-body {
+  display: flex;
+ align-items: center;
+ padding-bottom: 6rem;
+}
+
 .main-text {
   width: 50%;
   margin-top: 1rem;
-  margin-left: 13rem;
+ 
   padding: 1rem 1.5rem;
   background-color: aliceblue;
   font-weight: 500;
@@ -54,7 +69,7 @@
 
 .lorem {
   margin-top: 2.5rem;
-  padding: 0 12rem;
+  padding: 0 13rem;
   font-weight: 300;
   font-size: 1.3rem;
   color: aliceblue;

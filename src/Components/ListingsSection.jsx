@@ -35,13 +35,19 @@ const ListingsSection = () => {
 
     if (sortingStore.sortData) {
       url = url + `&sort=${sortingStore.sortData}`;
-    }
+    } 
 
     let res = await axios.get(url, {
       headers: { "Content-type": "application/json" },
       params: browseStore.params,
     });
+    
     let data = await res.data;
+    if(!data.item.length){
+       paginationStore.previousPage()
+       return
+    }
+   
     runInAction(() => {
       dataStore.carData = data;
     });
@@ -54,10 +60,10 @@ const ListingsSection = () => {
           <span className="lead">Sort by:</span>
           <select
             class="form-select form-select-sm sort-container"
-            aria-label="Default select example"
+            aria-label="Default select"
             onChange={setSortValue}
           >
-            <option selected>-</option>
+            <option selected>{null}</option>
             <option value="price|asc">Price (Lowest to Highest)</option>
             <option value="price|desc">Price (Highest to Lowest)</option>
           </select>
@@ -81,12 +87,13 @@ const ListingsSection = () => {
               );
             })
           ) : (
-            <div class="d-flex justify-content-center">
+            <div class="spinner">
               <div class="spinner-border" role="status">
                 <span class="visually-hidden">Loading...</span>
               </div>
             </div>
           )}
+          {dataStore.carData.item == 0 && paginationStore.page > 1 ? paginationStore.nextPage == paginationStore.page : ""}
         </div>
         <PageToggleButton changePage={handleSortFilterAndPages} />
       </div>

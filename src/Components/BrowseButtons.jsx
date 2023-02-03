@@ -2,6 +2,7 @@ import { useObserver } from "mobx-react";
 import React from "react";
 import { BrowseContext } from "../Stores/BrowseStore";
 import MainSearchButton from "./MainSearchButton";
+import ResetDataButton from "./ResetDataButton";
 import "./BrowseButtons.css";
 
 const BrowseButtons = () => {
@@ -46,13 +47,13 @@ const BrowseButtons = () => {
         );
     }
 
-    if (properties) {
+    let params = {};
+    if (properties.length) {
       properties = properties.join("AND");
+      params = {
+        searchQuery: `WHERE ${properties}`,
+      };
     }
-
-    const params = {
-      searchQuery: `WHERE ${properties}`,
-    };
 
     browseStore.getParams(params);
   }
@@ -82,6 +83,7 @@ const BrowseButtons = () => {
           })}
         </div>
         <MainSearchButton />
+        <ResetDataButton />
       </div>
     );
   });

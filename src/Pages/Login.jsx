@@ -40,7 +40,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="root">
       <h1 className="welcome-container">THE Car Market</h1>
       <div className="login-container">
         {isLoginOpen == false ? (
@@ -91,7 +91,7 @@ const Login = () => {
       </div>
       <div className="login-card-container">
         <div class="card login-card">
-          <div class="card-body">
+          <div class="card-body login-card-body">
             <h3 class="card-title rounded main-text">
               Extensive Choice of Cars
             </h3>
@@ -106,7 +106,7 @@ const Login = () => {
           </div>
         </div>
         <div class="card login-card">
-          <div class="card-body">
+          <div class="card-body login-card-body ">
             <h3 class="card-title rounded  main-text">
               All Parts in one place
             </h3>
