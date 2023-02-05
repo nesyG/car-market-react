@@ -20,8 +20,3 @@ Inputs are case-sensitive.
 
 <b>Stop container</b>
 - docker stop "CONTAINER ID"
-
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
