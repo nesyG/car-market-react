@@ -6,7 +6,7 @@ import ResetDataButton from "./ResetDataButton";
 import "./BrowseButtons.css";
 
 const BrowseButtons = () => {
-  //Initialize relevant stores
+  //Import relevant context
   const browseStore = React.useContext(BrowseContext);
 
   //Category specific information (for schema properties)

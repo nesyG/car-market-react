@@ -11,14 +11,14 @@ import { SortingContext } from "../Stores/SortingStore";
 import "./ListingsSection.css";
 
 const ListingsSection = () => {
-  //Initialize relevant stores
+  //Import relevant context
   const store = React.useContext(StoreContext);
   const paginationStore = React.useContext(PaginationContext);
   const dataStore = React.useContext(DataContext);
   const browseStore = React.useContext(BrowseContext);
   const sortingStore = React.useContext(SortingContext);
 
-  //Render initial car data and save it to global state
+  //Fetch initial car data and save it to global state
   useEffect(() => {
     dataStore.getCarData(store.token);
   }, []);
