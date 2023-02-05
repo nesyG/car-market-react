@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { observer } from "mobx-react";
 import { PaginationContext } from "../Stores/PaginationStore";
 import { DataContext } from "../Stores/DataStore";
 import { runInAction } from "mobx";
@@ -11,11 +12,11 @@ const ResetDataButton = () => {
   const paginationStore = React.useContext(PaginationContext);
   const dataStore = React.useContext(DataContext);
   const browseStore = React.useContext(BrowseContext);
-  const sortingStore = React.useContext(SortingContext);
+  const sortStore = React.useContext(SortingContext);
 
   //Search based on all neccessary global store values
   async function resetData() {
-    sortingStore.resetSortData();
+    sortStore.resetSortData();
     browseStore.resetBrowseState()
     paginationStore.resetDefaultPage()
 
@@ -27,18 +28,18 @@ const ResetDataButton = () => {
     });
     let data = await res.data;
     runInAction(() => {
-      dataStore.carData = data;
+      dataStore.getFilteredData(data);
     });
     
   }
 
   return (
     <>
-      <button class="btn btn-light ms-5" onClick={resetData}>
+      <button className="btn btn-light ms-5" onClick={resetData}>
         Reset Filters
       </button>
     </>
   );
 };
 
-export default ResetDataButton;
+export default observer(ResetDataButton);

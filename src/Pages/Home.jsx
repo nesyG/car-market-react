@@ -1,4 +1,5 @@
 import React from "react";
+import { observer } from "mobx-react";
 import BrowseButtons from "../Components/BrowseButtons";
 import ListingsSection from "../Components/ListingsSection";
 import "./Home.css";
@@ -6,7 +7,7 @@ import "./Home.css";
 const Home = () => {
   return (
     <>
-      <h1 class="h1 home-h1">Find your dream car</h1>
+      <h1 className="h1 home-h1">Find your dream car</h1>
       <div className="hero-section">
         <BrowseButtons />
         <ListingsSection />
@@ -15,4 +16,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default observer(Home);

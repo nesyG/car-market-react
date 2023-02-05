@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { observer } from "mobx-react";
 import { useNavigate } from "react-router-dom";
-import { StoreContext } from "../Stores/TokenStore";
+import { TokenContext } from "../Stores/TokenStore";
 import "./Login.css";
 
 const Login = () => {
-  const store = React.useContext(StoreContext);
+  const tokenStore = React.useContext(TokenContext);
   let navigate = useNavigate();
 
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -35,7 +36,7 @@ const Login = () => {
       url: "https://api.baasic.com/beta/new-react-project/login",
     });
     let data = await res.data;
-    store.addToken(data);
+    tokenStore.setToken(data);
     navigate("/home");
   };
 
@@ -43,7 +44,7 @@ const Login = () => {
     <div className="root">
       <h1 className="welcome-container">THE Car Market</h1>
       <div className="login-container">
-        {isLoginOpen == false ? (
+        {isLoginOpen === false ? (
           <h3
             className="btn btn-light"
             onClick={() => {
@@ -54,8 +55,8 @@ const Login = () => {
           </h3>
         ) : (
           <div>
-            <div class="form-group">
-              <label for="username" className="label-text">
+            <div className="form-group">
+              <label htmlFor="username" className="label-text">
                 Username
               </label>
               <input
@@ -67,8 +68,8 @@ const Login = () => {
                 placeholder="janedoe123"
               />
             </div>
-            <div class="form-group">
-              <label for="password" className="label-text">
+            <div className="form-group">
+              <label htmlFor="password" className="label-text">
                 Password
               </label>
               <input
@@ -90,12 +91,12 @@ const Login = () => {
         )}
       </div>
       <div className="login-card-container">
-        <div class="card login-card">
-          <div class="card-body login-card-body">
-            <h3 class="card-title rounded main-text">
+        <div className="card login-card">
+          <div className="card-body login-card-body">
+            <h3 className="card-title rounded main-text">
               Extensive Choice of Cars
             </h3>
-            <p class="card-text lorem">
+            <p className="card-text lorem">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -105,12 +106,12 @@ const Login = () => {
             </p>
           </div>
         </div>
-        <div class="card login-card">
-          <div class="card-body login-card-body ">
-            <h3 class="card-title rounded  main-text">
+        <div className="card login-card">
+          <div className="card-body login-card-body ">
+            <h3 className="card-title rounded  main-text">
               All Parts in one place
             </h3>
-            <p class="card-text lorem">
+            <p className="card-text lorem">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -125,4 +126,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default observer(Login);

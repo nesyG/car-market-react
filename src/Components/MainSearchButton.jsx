@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { observer } from "mobx-react";
 import { PaginationContext } from "../Stores/PaginationStore";
 import { DataContext } from "../Stores/DataStore";
 import { runInAction } from "mobx";
@@ -11,7 +12,7 @@ const MainSearchButton = () => {
   const paginationStore = React.useContext(PaginationContext);
   const dataStore = React.useContext(DataContext);
   const browseStore = React.useContext(BrowseContext);
-  const sortingStore = React.useContext(SortingContext);
+  const sortStore = React.useContext(SortingContext);
 
   //Search based on all neccessary global store values
   async function handleSortFilterAndPages() {
@@ -20,8 +21,8 @@ const MainSearchButton = () => {
     
     let url = `https://api.baasic.com/beta/new-react-project/resources/car?page=${paginationStore.page}&rpp=12`;
 
-    if (sortingStore.sortData) {
-      url = url + `&sort=${sortingStore.sortData}`;
+    if (sortStore.sortData) {
+      url = url + `&sort=${sortStore.sortData}`;
     }
 
     let res = await axios.get(url, {
@@ -32,17 +33,16 @@ const MainSearchButton = () => {
     runInAction(() => {
       dataStore.carData = data;
     });
-    console.log(res)
-    
+    console.log(res)   
   }
 
   return (
     <>
-      <button class="btn btn-dark me-5" onClick={handleSortFilterAndPages}>
+      <button className="btn btn-dark me-5" onClick={handleSortFilterAndPages}>
         Search
       </button>
     </>
   );
 };
 
-export default MainSearchButton;
+export default observer(MainSearchButton);

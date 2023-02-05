@@ -1,5 +1,5 @@
-import { useObserver } from "mobx-react";
 import React from "react";
+import { observer } from "mobx-react";
 import { BrowseContext } from "../Stores/BrowseStore";
 import MainSearchButton from "./MainSearchButton";
 import ResetDataButton from "./ResetDataButton";
@@ -37,7 +37,7 @@ const BrowseButtons = () => {
   function handleData(e) {
     const prop = e.target.name;
     const value = e.target.value;
-    browseStore.getBrowsingData(prop, value);
+    browseStore.setBrowsingData(prop, value)
 
     let properties = [];
     for (let key in browseStore.browsingData) {
@@ -54,29 +54,27 @@ const BrowseButtons = () => {
         searchQuery: `WHERE ${properties}`,
       };
     }
-
-    browseStore.getParams(params);
+    browseStore.setParams(params);
   }
 
-  return useObserver(() => {
     return (
       <div className="browse-buttons-container">
         <span className="lead">Filter:</span>
         <div className="browseButtonsContainer">
           {browseCategories.map((category) => {
             return (
-              <div>
-                <div class="form-floating mb-3">
+              <div key={category.name}>
+                <div className="form-floating mb-3">
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="floatingInput"
                     placeholder={category.labelPlaceholder}
                     name={category.name}
                     value={browseStore.browsingData[category.name]}
                     onChange={handleData}
                   />
-                  <label for="floatingInput">{category.labelText}</label>
+                  <label htmlFor="floatingInput">{category.labelText}</label>
                 </div>
               </div>
             );
@@ -86,7 +84,6 @@ const BrowseButtons = () => {
         <ResetDataButton />
       </div>
     );
-  });
 };
 
-export default BrowseButtons;
+export default observer(BrowseButtons);
