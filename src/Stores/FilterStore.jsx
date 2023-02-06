@@ -6,7 +6,7 @@ export const FilterContext = React.createContext();
 export const FilterProvider = ({ children }) => {
   class FilterStore {
     params = {};
-    browsingData = {
+    filterData = {
       car: "",
       car_model: "",
       car_model_year: "",
@@ -19,11 +19,11 @@ export const FilterProvider = ({ children }) => {
     setParams(data) {
       this.params = data;
     }
-    setBrowsingData(prop, value) {
-      this.browsingData = { ...this.browsingData, [prop]: value };
+    setFilterData(prop, value) {
+      this.filterData = { ...this.filterData, [prop]: value };
     }
-    resetBrowseState() {
-      this.browsingData = {
+    resetFilterState() {
+      this.filterData = {
         car: "",
         car_model: "",
         car_model_year: "",

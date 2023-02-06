@@ -6,7 +6,7 @@ import SingleListing from "./Pages/SingleListing";
 import { TokenProvider } from "./Stores/TokenStore";
 import { PaginationProvider } from "./Stores/PaginationStore";
 import { DataProvider } from "./Stores/DataStore";
-import { FilterProvider } from "./Stores/BrowseStore";
+import { FilterProvider } from "./Stores/FilterStore";
 import { SortingProvider } from "./Stores/SortingStore";
 
 

@@ -1,7 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { FilterContext } from "../../../Stores/BrowseStore";
-import { DataContext } from "../../../Stores/DataStore";
+import { FilterContext } from "../../../Stores/FilterStore";
 import MainSearchButton from "./MainSearchButton";
 import ResetDataButton from "./ResetDataButton";
 import "./FilterSection.css";
@@ -38,13 +37,13 @@ const FilterSection = () => {
   function handleData(e) {
     const prop = e.target.name;
     const value = e.target.value;
-    filterStore.setBrowsingData(prop, value)
+    filterStore.setFilterData(prop, value)
 
     let properties = [];
-    for (let key in filterStore.browsingData) {
-      if (filterStore.browsingData[key])
+    for (let key in filterStore.filterData) {
+      if (filterStore.filterData[key])
         properties.push(
-          `"${key}"` + "=" + `'${filterStore.browsingData[key]}'`
+          `"${key}"` + "=" + `'${filterStore.filterData[key]}'`
         );
     }
 
@@ -72,7 +71,7 @@ const FilterSection = () => {
                     id="floatingInput"
                     placeholder={category.labelPlaceholder}
                     name={category.name}
-                    value={filterStore.browsingData[category.name]}
+                    value={filterStore.filterData[category.name]}
                     onChange={handleData}
                   />
                   <label htmlFor="floatingInput">{category.labelText}</label>

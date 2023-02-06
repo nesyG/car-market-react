@@ -6,7 +6,7 @@ import { PaginationContext } from "../../../Stores/PaginationStore";
 import { DataContext } from "../../../Stores/DataStore";
 import { observer } from "mobx-react";
 import { runInAction } from "mobx";
-import { FilterContext } from "../../../Stores/BrowseStore";
+import { FilterContext } from "../../../Stores/FilterStore";
 import { SortingContext } from "../../../Stores/SortingStore";
 import "./ListingsSection.css";
 

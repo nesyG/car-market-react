@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import { PaginationContext } from "../../../Stores/PaginationStore";
 import { DataContext } from "../../../Stores/DataStore";
 import { runInAction } from "mobx";
-import { FilterContext } from "../../../Stores/BrowseStore";
+import { FilterContext } from "../../../Stores/FilterStore";
 import { SortingContext } from "../../../Stores/SortingStore";
 
 const ResetDataButton = () => {
@@ -16,7 +16,7 @@ const ResetDataButton = () => {
   //Search based on all neccessary global store values
   async function resetData() {
     sortStore.resetSortData();
-    filterStore.resetBrowseState()
+    filterStore.resetFilterState()
     paginationStore.resetDefaultPage()
 
     let url = `https://api.baasic.com/beta/new-react-project/resources/car?page=1&rpp=12`;
