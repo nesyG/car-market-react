@@ -1,17 +1,16 @@
 import React from "react";
 import axios from "axios";
 import { observer } from "mobx-react";
-import { PaginationContext } from "../Stores/PaginationStore";
-import { DataContext } from "../Stores/DataStore";
+import { PaginationContext } from "../../../Stores/PaginationStore";
+import { DataContext } from "../../../Stores/DataStore";
 import { runInAction } from "mobx";
-import { BrowseContext } from "../Stores/BrowseStore";
-import { SortingContext } from "../Stores/SortingStore";
-import "./ListingsSection.css";
+import { FilterContext } from "../../../Stores/BrowseStore";
+import { SortingContext } from "../../../Stores/SortingStore";
 
 const MainSearchButton = () => {
   const paginationStore = React.useContext(PaginationContext);
   const dataStore = React.useContext(DataContext);
-  const browseStore = React.useContext(BrowseContext);
+  const filterStore = React.useContext(FilterContext);
   const sortStore = React.useContext(SortingContext);
 
   //Search based on all neccessary global store values
@@ -27,7 +26,7 @@ const MainSearchButton = () => {
 
     let res = await axios.get(url, {
       headers: { "Content-type": "application/json" },
-      params: browseStore.params,
+      params: filterStore.params,
     });
     let data = await res.data;
     runInAction(() => {

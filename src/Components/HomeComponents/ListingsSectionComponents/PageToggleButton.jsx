@@ -1,6 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { PaginationContext } from "../Stores/PaginationStore";
+import { PaginationContext } from "../../../Stores/PaginationStore";
 import "./PageToggleButton.css";
 
 const PageToggleButton = (props) => {

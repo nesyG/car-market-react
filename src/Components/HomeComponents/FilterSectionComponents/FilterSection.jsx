@@ -1,13 +1,14 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { BrowseContext } from "../Stores/BrowseStore";
+import { FilterContext } from "../../../Stores/BrowseStore";
+import { DataContext } from "../../../Stores/DataStore";
 import MainSearchButton from "./MainSearchButton";
 import ResetDataButton from "./ResetDataButton";
-import "./BrowseButtons.css";
+import "./FilterSection.css";
 
-const BrowseButtons = () => {
+const FilterSection = () => {
   //Import relevant context
-  const browseStore = React.useContext(BrowseContext);
+  const filterStore = React.useContext(FilterContext);
 
   //Category specific information (for schema properties)
   const browseCategories = [
@@ -37,13 +38,13 @@ const BrowseButtons = () => {
   function handleData(e) {
     const prop = e.target.name;
     const value = e.target.value;
-    browseStore.setBrowsingData(prop, value)
+    filterStore.setBrowsingData(prop, value)
 
     let properties = [];
-    for (let key in browseStore.browsingData) {
-      if (browseStore.browsingData[key])
+    for (let key in filterStore.browsingData) {
+      if (filterStore.browsingData[key])
         properties.push(
-          `"${key}"` + "=" + `'${browseStore.browsingData[key]}'`
+          `"${key}"` + "=" + `'${filterStore.browsingData[key]}'`
         );
     }
 
@@ -54,7 +55,7 @@ const BrowseButtons = () => {
         searchQuery: `WHERE ${properties}`,
       };
     }
-    browseStore.setParams(params);
+    filterStore.setParams(params);
   }
 
     return (
@@ -71,7 +72,7 @@ const BrowseButtons = () => {
                     id="floatingInput"
                     placeholder={category.labelPlaceholder}
                     name={category.name}
-                    value={browseStore.browsingData[category.name]}
+                    value={filterStore.browsingData[category.name]}
                     onChange={handleData}
                   />
                   <label htmlFor="floatingInput">{category.labelText}</label>
@@ -86,4 +87,4 @@ const BrowseButtons = () => {
     );
 };
 
-export default observer(BrowseButtons);
+export default observer(FilterSection);

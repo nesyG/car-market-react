@@ -7,7 +7,7 @@ const SingleCarItem = () => {   //For future implementation
 
     function getThisListing () {
        
-        navigate("/listing")
+        navigate("singleListing/:id")
     }
 
     return (

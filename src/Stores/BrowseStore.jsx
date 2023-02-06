@@ -1,10 +1,10 @@
 import React from "react";
 import { makeAutoObservable } from "mobx";
 
-export const BrowseContext = React.createContext();
+export const FilterContext = React.createContext();
 
-export const BrowseProvider = ({ children }) => {
-  class BrowseStore {
+export const FilterProvider = ({ children }) => {
+  class FilterStore {
     params = {};
     browsingData = {
       car: "",
@@ -32,12 +32,12 @@ export const BrowseProvider = ({ children }) => {
       this.params = {};
     }
   }
-  const browseStore = new BrowseStore();
+  const filterStore = new FilterStore();
 
   return (
-    <BrowseContext.Provider value={browseStore}>
+    <FilterContext.Provider value={filterStore}>
       {children}
-    </BrowseContext.Provider>
+    </FilterContext.Provider>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
-import BrowseButtons from "../Components/BrowseButtons";
-import ListingsSection from "../Components/ListingsSection";
+import FilterSection from "../Components/HomeComponents/FilterSectionComponents/FilterSection";
+import ListingsSection from "../Components/HomeComponents/ListingsSectionComponents/ListingsSection";
 import "./Home.css";
 
 const Home = () => {
@@ -9,7 +9,7 @@ const Home = () => {
     <>
       <h1 className="h1 home-h1">Find your dream car</h1>
       <div className="hero-section">
-        <BrowseButtons />
+        <FilterSection />
         <ListingsSection />
       </div>
     </>

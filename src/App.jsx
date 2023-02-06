@@ -2,16 +2,18 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./Pages/Login";
 import Home from "./Pages/Home";
+import SingleListing from "./Pages/SingleListing";
 import { TokenProvider } from "./Stores/TokenStore";
 import { PaginationProvider } from "./Stores/PaginationStore";
 import { DataProvider } from "./Stores/DataStore";
-import { BrowseProvider } from "./Stores/BrowseStore";
+import { FilterProvider } from "./Stores/BrowseStore";
 import { SortingProvider } from "./Stores/SortingStore";
+
 
 const App = () => {
   return (
     <SortingProvider>
-      <BrowseProvider>
+      <FilterProvider>
         <DataProvider>
           <PaginationProvider>
             <TokenProvider>
@@ -19,12 +21,13 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={<Login />} />
                   <Route path="/home" element={<Home />} />
+                  <Route path="/singleListing/:id" element={<SingleListing/>} />
                 </Routes>
               </div>
             </TokenProvider>
           </PaginationProvider>
         </DataProvider>
-      </BrowseProvider>
+      </FilterProvider>
     </SortingProvider>
   );
 };

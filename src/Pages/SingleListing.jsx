@@ -1,7 +1,7 @@
 import React from "react";
 
 //Left for future implementation
-const Listing = () => {
+const SingleListing = () => {
   return (
     <>
       <h1>Welcome to single listing by id</h1>
@@ -9,4 +9,4 @@ const Listing = () => {
   );
 };
 
-export default Listing;
+export default SingleListing;

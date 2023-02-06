@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import { TokenContext } from "../Stores/TokenStore";
+import { TokenContext } from "../../../Stores/TokenStore";
 import PageToggleButton from "./PageToggleButton";
-import { PaginationContext } from "../Stores/PaginationStore";
-import { DataContext } from "../Stores/DataStore";
+import { PaginationContext } from "../../../Stores/PaginationStore";
+import { DataContext } from "../../../Stores/DataStore";
 import { observer } from "mobx-react";
 import { runInAction } from "mobx";
-import { BrowseContext } from "../Stores/BrowseStore";
-import { SortingContext } from "../Stores/SortingStore";
+import { FilterContext } from "../../../Stores/BrowseStore";
+import { SortingContext } from "../../../Stores/SortingStore";
 import "./ListingsSection.css";
 
 const ListingsSection = () => {
@@ -15,7 +15,7 @@ const ListingsSection = () => {
   const tokenStore = React.useContext(TokenContext);
   const paginationStore = React.useContext(PaginationContext);
   const dataStore = React.useContext(DataContext);
-  const browseStore = React.useContext(BrowseContext);
+  const filterStore = React.useContext(FilterContext);
   const sortStore = React.useContext(SortingContext);
 
   //Fetch initial car data and save it to global state
@@ -39,7 +39,7 @@ const ListingsSection = () => {
 
     let res = await axios.get(url, {
       headers: { "Content-type": "application/json" },
-      params: browseStore.params,
+      params: filterStore.params,
     });
     
     let data = await res.data;
@@ -47,6 +47,7 @@ const ListingsSection = () => {
        paginationStore.setPreviousPage()
        return
     }
+
     runInAction(() => {
       dataStore.getFilteredData(data)
     
@@ -92,7 +93,6 @@ const ListingsSection = () => {
               </div>
             </div>
           )}
-          {dataStore.carData.item === 0 && paginationStore.page > 1 ? paginationStore.setNextPage() === paginationStore.page : ""}
         </div>
         <PageToggleButton changePage={handleSortFilterAndPages} />
       </div>
