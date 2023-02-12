@@ -36,8 +36,9 @@ const Login = () => {
       url: "https://api.baasic.com/beta/new-react-project/login",
     });
     let data = await res.data;
-    tokenStore.setToken(data);
     navigate("/home");
+    tokenStore.setToken(data);
+   
   };
 
   return (
