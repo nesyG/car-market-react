@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import { observer } from "mobx-react";
 import { useNavigate } from "react-router-dom";
-import { TokenContext } from "../Stores/TokenStore";
 import "./Login.css";
+import { RootContext } from "../Stores/RootStore";
 
 const Login = () => {
-  const tokenStore = React.useContext(TokenContext);
+  const rootStore = React.useContext(RootContext);
+  const {setToken} = rootStore.tokenStore
   let navigate = useNavigate();
 
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -37,7 +38,7 @@ const Login = () => {
     });
     let data = await res.data;
     navigate("/home");
-    tokenStore.setToken(data);
+    setToken(data);
    
   };
 

@@ -1,24 +1,16 @@
 import React from "react";
 import { makeAutoObservable } from "mobx";
 
-export const TokenContext = React.createContext();
-
-export const TokenProvider = ({ children }) => {
-  class TokenStore {
+ export default class TokenStore {
     token = "";
     constructor() {
-      makeAutoObservable(this);
+      makeAutoObservable(this, {}, { autoBind: true });
     }
     setToken(token) {
       this.token = token.access_token;
     }
   }
-  const tokenStore = new TokenStore();
 
-  return (
-    <TokenContext.Provider value={tokenStore}>{children}</TokenContext.Provider>
-  );
-};
 
 //Example with functions, not preferred according to documentation?
 

@@ -3,13 +3,11 @@ import axios from "axios";
 import { makeAutoObservable } from "mobx";
 import { runInAction } from "mobx";
 
-export const DataContext = React.createContext();
 
-export const DataProvider = ({ children }) => {
-  class DataStore {
+ export default class DataStore {
     carData = [];
     constructor() {
-      makeAutoObservable(this);
+      makeAutoObservable(this, {}, { autoBind: true });
     };
     getCarData = async (token) => {
       let res = await axios({
@@ -25,16 +23,11 @@ export const DataProvider = ({ children }) => {
         this.carData = info;
       });
     };
-    getFilteredData(data) {
+    getFilteredData (data)  {
       this.carData = data;
     };
   }
-  const dataStore = new DataStore();
 
-  return (
-    <DataContext.Provider value={dataStore}>{children}</DataContext.Provider>
-  );
-};
 
 //Example with functions, not preferred according to documentation?
 

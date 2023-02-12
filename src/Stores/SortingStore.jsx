@@ -1,13 +1,10 @@
 import React from "react";
 import { makeAutoObservable } from "mobx";
 
-export const SortingContext = React.createContext();
-
-export const SortingProvider = ({ children }) => {
-  class SortStore {
+ export default class SortStore {
     sortData = "";
     constructor() {
-      makeAutoObservable(this);
+      makeAutoObservable(this, {}, { autoBind: true });
     }
     setSortData(info) {
       this.sortData = info;
@@ -16,14 +13,8 @@ export const SortingProvider = ({ children }) => {
       this.sortData = "";
     }
   }
-  const sortStore = new SortStore();
 
-  return (
-    <SortingContext.Provider value={sortStore}>
-      {children}
-    </SortingContext.Provider>
-  );
-};
+  
 
 //Example with functions, not preferred according to documentation?
 

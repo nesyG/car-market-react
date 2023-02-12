@@ -1,23 +1,21 @@
 import React from "react";
 import axios from "axios";
 import { observer } from "mobx-react";
-import { PaginationContext } from "../../../Stores/PaginationStore";
-import { DataContext } from "../../../Stores/DataStore";
+import { RootContext } from "../../../Stores/RootStore";
 import { runInAction } from "mobx";
-import { FilterContext } from "../../../Stores/FilterStore";
-import { SortingContext } from "../../../Stores/SortingStore";
 
 const ResetDataButton = () => {
-  const paginationStore = React.useContext(PaginationContext);
-  const dataStore = React.useContext(DataContext);
-  const filterStore = React.useContext(FilterContext);
-  const sortStore = React.useContext(SortingContext);
+  const rootStore = React.useContext(RootContext);
+  const paginationStore = rootStore.paginationStore;
+  const dataStore = rootStore.dataStore;
+  const filterStore = rootStore.filterStore;
+  const sortingStore= rootStore.sortingStore;
 
   //Search based on all neccessary global store values
   async function resetData() {
-    sortStore.resetSortData();
-    filterStore.resetFilterState()
-    paginationStore.resetDefaultPage()
+    sortingStore.resetSortData();
+    filterStore.resetFilterState();
+    paginationStore.resetDefaultPage();
 
     let url = `https://api.baasic.com/beta/new-react-project/resources/car?page=1&rpp=12`;
 
@@ -29,7 +27,6 @@ const ResetDataButton = () => {
     runInAction(() => {
       dataStore.getFilteredData(data);
     });
-    
   }
 
   return (

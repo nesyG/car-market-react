@@ -1,22 +1,19 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import { TokenContext } from "../../../Stores/TokenStore";
 import PageToggleButton from "./PageToggleButton";
-import { PaginationContext } from "../../../Stores/PaginationStore";
-import { DataContext } from "../../../Stores/DataStore";
 import { observer } from "mobx-react";
 import { runInAction } from "mobx";
-import { FilterContext } from "../../../Stores/FilterStore";
-import { SortingContext } from "../../../Stores/SortingStore";
+import { RootContext } from "../../../Stores/RootStore";
 import "./ListingsSection.css";
 
 const ListingsSection = () => {
   //Import relevant context
-  const tokenStore = React.useContext(TokenContext);
-  const paginationStore = React.useContext(PaginationContext);
-  const dataStore = React.useContext(DataContext);
-  const filterStore = React.useContext(FilterContext);
-  const sortStore = React.useContext(SortingContext);
+  const rootStore = React.useContext(RootContext);
+  const paginationStore = rootStore.paginationStore;
+  const dataStore = rootStore.dataStore;
+  const filterStore = rootStore.filterStore;
+  const sortingStore = rootStore.sortingStore;
+  const tokenStore = rootStore.tokenStore
 
   //Fetch initial car data and save it to global state
   useEffect(() => {
@@ -26,15 +23,15 @@ const ListingsSection = () => {
   //Function for setting sort state
   function setSortValue(e) {
     const { value } = e.target;
-    sortStore.setSortData(value);
+    sortingStore.setSortData(value);
   }
 
   //Function for calling next or previous page based on all sorting or filter criteria
   async function handleSortFilterAndPages() {
     let url = `https://api.baasic.com/beta/new-react-project/resources/car?page=${paginationStore.page}&rpp=12`;
 
-    if (sortStore.sortData) {
-      url = url + `&sort=${sortStore.sortData}`;
+    if (sortingStore.sortData) {
+      url = url + `&sort=${sortingStore.sortData}`;
     } 
 
     let res = await axios.get(url, {
@@ -44,13 +41,12 @@ const ListingsSection = () => {
     
     let data = await res.data;
     if(!data.item.length){
-       paginationStore.setPreviousPage()
+      paginationStore.setPreviousPage()
        return
     }
 
     runInAction(() => {
       dataStore.getFilteredData(data)
-    
     });
   }
 

@@ -1,45 +1,48 @@
 import React from "react";
 import { makeAutoObservable } from "mobx";
 
-export const FilterContext = React.createContext();
+export default class FilterStore {
+  params = {};
+  filterData = {
+    car: "",
+    car_model: "",
+    car_model_year: "",
+    car_color: "",
+  };
+  constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
+  }
 
-export const FilterProvider = ({ children }) => {
-  class FilterStore {
-    params = {};
-    filterData = {
+  makeParams() {
+    let properties = [];
+    for (let key in this.filterData) {
+      if (this.filterData[key])
+        properties.push(`"${key}"` + "=" + `'${this.filterData[key]}'`);
+    }
+
+    let params = {};
+    if (properties.length) {
+      properties = properties.join("AND");
+      params = {
+        searchQuery: `WHERE ${properties}`,
+      };
+    }
+    this.params = params;
+  }
+
+  setFilterData(prop, value) {
+    this.filterData = { ...this.filterData, [prop]: value };
+  }
+  resetFilterState() {
+    this.filterData = {
       car: "",
       car_model: "",
       car_model_year: "",
       car_color: "",
     };
-    constructor() {
-      makeAutoObservable(this);
-    }
-
-    setParams(data) {
-      this.params = data;
-    }
-    setFilterData(prop, value) {
-      this.filterData = { ...this.filterData, [prop]: value };
-    }
-    resetFilterState() {
-      this.filterData = {
-        car: "",
-        car_model: "",
-        car_model_year: "",
-        car_color: "",
-      };
-      this.params = {};
-    }
+    this.params = {};
   }
-  const filterStore = new FilterStore();
-
-  return (
-    <FilterContext.Provider value={filterStore}>
-      {children}
-    </FilterContext.Provider>
-  );
-};
+}
 
 //Example with functions, not preferred according to documentation?
 

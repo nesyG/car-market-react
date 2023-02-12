@@ -1,13 +1,14 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { FilterContext } from "../../../Stores/FilterStore";
+import { RootContext } from "../../../Stores/RootStore";
 import MainSearchButton from "./MainSearchButton";
 import ResetDataButton from "./ResetDataButton";
 import "./FilterSection.css";
 
 const FilterSection = () => {
   //Import relevant context
-  const filterStore = React.useContext(FilterContext);
+  const rootStore = React.useContext(RootContext);
+  const { filterData, setFilterData, makeParams } = rootStore.filterStore;
 
   //Category specific information (for schema properties)
   const browseCategories = [
@@ -37,53 +38,39 @@ const FilterSection = () => {
   function handleData(e) {
     const prop = e.target.name;
     const value = e.target.value;
-    filterStore.setFilterData(prop, value)
 
-    let properties = [];
-    for (let key in filterStore.filterData) {
-      if (filterStore.filterData[key])
-        properties.push(
-          `"${key}"` + "=" + `'${filterStore.filterData[key]}'`
-        );
-    }
-
-    let params = {};
-    if (properties.length) {
-      properties = properties.join("AND");
-      params = {
-        searchQuery: `WHERE ${properties}`,
-      };
-    }
-    filterStore.setParams(params);
+    setFilterData(prop, value);
+    makeParams()
+   
   }
 
-    return (
-      <div className="browse-buttons-container">
-        <span className="lead">Filter:</span>
-        <div className="browseButtonsContainer">
-          {browseCategories.map((category) => {
-            return (
-              <div key={category.name}>
-                <div className="form-floating mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="floatingInput"
-                    placeholder={category.labelPlaceholder}
-                    name={category.name}
-                    value={filterStore.filterData[category.name]}
-                    onChange={handleData}
-                  />
-                  <label htmlFor="floatingInput">{category.labelText}</label>
-                </div>
+  return (
+    <div className="browse-buttons-container">
+      <span className="lead">Filter:</span>
+      <div className="browseButtonsContainer">
+        {browseCategories.map((category) => {
+          return (
+            <div key={category.name}>
+              <div className="form-floating mb-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="floatingInput"
+                  placeholder={category.labelPlaceholder}
+                  name={category.name}
+                  value={filterData[category.name]}
+                  onChange={handleData}
+                />
+                <label htmlFor="floatingInput">{category.labelText}</label>
               </div>
-            );
-          })}
-        </div>
-        <MainSearchButton />
-        <ResetDataButton />
+            </div>
+          );
+        })}
       </div>
-    );
+      <MainSearchButton />
+      <ResetDataButton />
+    </div>
+  );
 };
 
 export default observer(FilterSection);

@@ -1,38 +1,35 @@
 import React from "react";
 import axios from "axios";
 import { observer } from "mobx-react";
-import { PaginationContext } from "../../../Stores/PaginationStore";
-import { DataContext } from "../../../Stores/DataStore";
+import { RootContext } from "../../../Stores/RootStore";
 import { runInAction } from "mobx";
-import { FilterContext } from "../../../Stores/FilterStore";
-import { SortingContext } from "../../../Stores/SortingStore";
 
 const MainSearchButton = () => {
-  const paginationStore = React.useContext(PaginationContext);
-  const dataStore = React.useContext(DataContext);
-  const filterStore = React.useContext(FilterContext);
-  const sortStore = React.useContext(SortingContext);
+  const rootStore = React.useContext(RootContext);
+  const { resetDefaultPage, page } = rootStore.paginationStore;
+  const { getFilteredData } = rootStore.dataStore;
+  const { params } = rootStore.filterStore;
+  const { sortData } = rootStore.sortingStore;
 
   //Search based on all neccessary global store values
   async function handleSortFilterAndPages() {
+    resetDefaultPage();
 
-    paginationStore.resetDefaultPage()
-    
-    let url = `https://api.baasic.com/beta/new-react-project/resources/car?page=${paginationStore.page}&rpp=12`;
+    let url = `https://api.baasic.com/beta/new-react-project/resources/car?page=${page}&rpp=12`;
 
-    if (sortStore.sortData) {
-      url = url + `&sort=${sortStore.sortData}`;
+    if (sortData) {
+      url = url + `&sort=${sortData}`;
     }
 
     let res = await axios.get(url, {
       headers: { "Content-type": "application/json" },
-      params: filterStore.params,
+      params: params,
     });
     let data = await res.data;
     runInAction(() => {
-      dataStore.carData = data;
+      getFilteredData(data);
     });
-    console.log(res)   
+    console.log(res);
   }
 
   return (
