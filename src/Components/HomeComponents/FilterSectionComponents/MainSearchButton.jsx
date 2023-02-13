@@ -29,7 +29,6 @@ const MainSearchButton = () => {
     runInAction(() => {
       getFilteredData(data);
     });
-    console.log(res);
   }
 
   return (

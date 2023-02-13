@@ -16,7 +16,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
   color: rgb(92, 91, 91);
 }
 
@@ -39,7 +38,6 @@
   height: 40%;
   display: flex;
   padding-top: 2rem;
-
   background-color: rgb(32, 32, 32);
 }
 
@@ -53,14 +51,13 @@
 .login-card-body {
   display: flex;
   flex-direction: column;
- align-items: center;
- padding-bottom: 6rem;
+  align-items: center;
+  padding-bottom: 6rem;
 }
 
 .main-text {
-  width: 50%;
+  width: 60%;
   margin-top: 1rem;
- 
   padding: 1rem 1.5rem;
   background-color: aliceblue;
   font-weight: 500;
@@ -69,9 +66,29 @@
 }
 
 .lorem {
+  text-align:justify;
+  width: 80%;
   margin-top: 2.5rem;
-  padding: 0 13rem;
+  padding: 0 2rem;
   font-weight: 300;
   font-size: 1.3rem;
   color: aliceblue;
+}
+
+@media (max-width: 992px) {
+  .login-card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .main-text {
+    width: 100%;
+    font-size: 1.5rem;
+  }
+  .lorem {
+    width: 100%;
+    padding: 0;
+    font-size: 1rem;
+  }
 }

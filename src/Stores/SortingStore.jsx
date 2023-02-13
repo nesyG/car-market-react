@@ -1,4 +1,3 @@
-import React from "react";
 import { makeAutoObservable } from "mobx";
 
  export default class SortStore {

@@ -12,7 +12,7 @@
 }
 
 .spinner {
- padding: 10rem 10rem 30rem 10rem;
+  padding: 10rem 10rem 30rem 10rem;
   color: aliceblue;
 }
 
@@ -59,4 +59,32 @@
 .price-text {
   font-weight: 500;
   font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .card-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+@media (max-width: 992px) {
+  .card-container {
+    align-items: center;
+  }
+  .car-card {
+    width: 35%;
+  }
+  .browse-buttons-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1400px) {
+  .car-card {
+    width: 25%;
+  }
 }

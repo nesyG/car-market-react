@@ -9,7 +9,7 @@ const ResetDataButton = () => {
   const paginationStore = rootStore.paginationStore;
   const dataStore = rootStore.dataStore;
   const filterStore = rootStore.filterStore;
-  const sortingStore= rootStore.sortingStore;
+  const sortingStore = rootStore.sortingStore;
 
   //Search based on all neccessary global store values
   async function resetData() {

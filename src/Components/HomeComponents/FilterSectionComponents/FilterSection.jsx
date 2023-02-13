@@ -11,7 +11,7 @@ const FilterSection = () => {
   const { filterData, setFilterData, makeParams } = rootStore.filterStore;
 
   //Category specific information (for schema properties)
-  const browseCategories = [
+  const filterCategories = [
     {
       name: "car",
       labelText: "Which brand are you looking for?",
@@ -41,14 +41,13 @@ const FilterSection = () => {
 
     setFilterData(prop, value);
     makeParams()
-   
   }
 
   return (
     <div className="browse-buttons-container">
       <span className="lead">Filter:</span>
       <div className="browseButtonsContainer">
-        {browseCategories.map((category) => {
+        {filterCategories.map((category) => {
           return (
             <div key={category.name}>
               <div className="form-floating mb-3">

@@ -1,5 +1,4 @@
 import React from "react";
-import { makeAutoObservable } from "mobx";
 import PaginationStore from "./PaginationStore";
 import DataStore from "./DataStore"
 import FilterStore from "./FilterStore";
