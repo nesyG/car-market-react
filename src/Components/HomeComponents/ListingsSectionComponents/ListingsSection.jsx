@@ -58,8 +58,9 @@ const ListingsSection = () => {
             className="form-select form-select-sm sort-container"
             aria-label="Default select"
             onChange={setSortValue}
+            value={sortingStore.sortData}
           >
-            <option defaultValue={null} >{null}</option>
+            <option value={""}>{null}</option>
             <option value="price|asc">Price (Lowest to Highest)</option>
             <option value="price|desc">Price (Highest to Lowest)</option>
           </select>

@@ -19,6 +19,7 @@ const MainSearchButton = () => {
 
     if (sortData) {
       url = url + `&sort=${sortData}`;
+      console.log(url)
     }
 
     let res = await axios.get(url, {
@@ -33,7 +34,7 @@ const MainSearchButton = () => {
 
   return (
     <>
-      <button className="btn btn-dark me-5" onClick={handleSortFilterAndPages}>
+      <button className="btn btn-dark me-5 search-button" onClick={handleSortFilterAndPages}>
         Search
       </button>
     </>
