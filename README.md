@@ -2,6 +2,7 @@
 
 ## `Description`
 React application for browsing, filtering and sorting car data available in Baasic backend.
+Mobx state managment.
 Inputs are case-sensitive.
 
 ## `Docker`
