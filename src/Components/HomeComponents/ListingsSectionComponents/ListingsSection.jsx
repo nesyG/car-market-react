@@ -18,7 +18,7 @@ const ListingsSection = () => {
   //Fetch initial car data and save it to global state
   useEffect(() => {
     dataStore.getCarData(tokenStore.token);
-  }, []);
+  }, [dataStore, tokenStore.token]);
 
   //Function for setting sort state
   function setSortValue(e) {

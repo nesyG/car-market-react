@@ -32,6 +32,7 @@ export default class FilterStore {
   setFilterData(prop, value) {
     this.filterData = { ...this.filterData, [prop]: value };
   }
+ 
   resetFilterState() {
     this.filterData = {
       car: "",
