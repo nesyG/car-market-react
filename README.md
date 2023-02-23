@@ -5,7 +5,7 @@ React application for browsing, filtering and sorting car data available in Baas
 Mobx state managment.
 Inputs are case-sensitive.
 
-Application deplyed at: https://car-market-react.vercel.app/
+Application deployed at: https://car-market-react.vercel.app/
 
 ## `Docker`
 
