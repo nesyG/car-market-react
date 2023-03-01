@@ -7,7 +7,7 @@ import TokenStore from "./TokenStore"
 
 export const RootContext = React.createContext();
 
-export const RootProvider = ({ children }) => {
+export const RootProvider =   ({ children }) => {
   class RootStore {
     dataStore = DataStore;
     filterStore = FilterStore;

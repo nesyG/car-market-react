@@ -1,17 +1,14 @@
 import React, { useEffect } from "react";
-import axios from "axios";
 import PageToggleButton from "./PageToggleButton";
 import { observer } from "mobx-react";
-import { runInAction } from "mobx";
 import { RootContext } from "../../../Stores/RootStore";
 import "./ListingsSection.css";
+import {Link} from "react-router-dom"
 
 const ListingsSection = () => {
   //Import relevant context
   const rootStore = React.useContext(RootContext);
-  const paginationStore = rootStore.paginationStore;
   const dataStore = rootStore.dataStore;
-  const filterStore = rootStore.filterStore;
   const sortingStore = rootStore.sortingStore;
   const tokenStore = rootStore.tokenStore
 
@@ -24,30 +21,6 @@ const ListingsSection = () => {
   function setSortValue(e) {
     const { value } = e.target;
     sortingStore.setSortData(value);
-  }
-
-  //Function for calling next or previous page based on all sorting or filter criteria
-  async function handleSortFilterAndPages() {
-    let url = `https://api.baasic.com/beta/new-react-project/resources/car?page=${paginationStore.page}&rpp=12`;
-
-    if (sortingStore.sortData) {
-      url = url + `&sort=${sortingStore.sortData}`;
-    } 
-
-    let res = await axios.get(url, {
-      headers: { "Content-type": "application/json" },
-      params: filterStore.params,
-    });
-    
-    let data = await res.data;
-    if(!data.item.length){
-      paginationStore.setPreviousPage()
-       return
-    }
-
-    runInAction(() => {
-      dataStore.getFilteredData(data)
-    });
   }
 
     return (
@@ -70,6 +43,7 @@ const ListingsSection = () => {
             dataStore.carData.item.map((elem) => {
               return (
                 <div className="card car-card" key={elem.id}>
+                  <Link to={`/singleListing/${elem.id}`}>More Info</Link>
                   <span className="material-symbols-outlined">car_rental</span>
                   <div className="card-body">
                     <h4 className="card-title">{elem.car}</h4>
@@ -91,7 +65,7 @@ const ListingsSection = () => {
             </div>
           )}
         </div>
-        <PageToggleButton changePage={handleSortFilterAndPages} />
+        <PageToggleButton />
       </div>
     );
 };

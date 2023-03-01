@@ -1,19 +1,20 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { RootContext } from "../../Stores/RootStore";
 import "./SingleCarItem.css"
 
 const SingleCarItem = () => {   //For future implementation
-    let navigate = useNavigate()
+    const rootStore = React.useContext(RootContext);
+    const dataStore = rootStore.dataStore;
 
-    function getThisListing () {
-       
-        navigate("singleListing/:id")
-    }
+    const id = useParams()
+    console.log(id.id)
+
+    console.log(dataStore.carData)
 
     return (
         <div className="single-car-container">
-        <h4>I am one record, click me!</h4>
-        <button onClick={getThisListing}>More info</button>
+       This page will be available soon!
         </div>
     )
 }

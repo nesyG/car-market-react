@@ -1,10 +1,12 @@
 import React from "react";
+import SingleCarItem from "../Components/SingleListingComponents/SingleCarItem";
+
 
 //Left for future implementation
 const SingleListing = () => {
   return (
     <>
-      <h1>Welcome to single listing by id</h1>
+      <SingleCarItem/>
     </>
   );
 };

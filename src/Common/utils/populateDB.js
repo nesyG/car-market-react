@@ -17,7 +17,7 @@ function populateDB () {
     let newCar = { ...car, id: car.id.toString() };
     newCar.date_added = generatedDate.toDateString();
 
-    //make post request, add car object do db
+    //make post request, add car object to db
     let res = axios({
       method: "POST",
       headers: {
