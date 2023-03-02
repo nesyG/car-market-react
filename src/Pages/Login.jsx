@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { observer } from "mobx-react";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
 import { RootContext } from "../Stores/RootStore";
+import callApi from "../Common/utils/callApi";
+import "./Login.css";
+
 
 const Login = () => {
   const rootStore = React.useContext(RootContext);
-  const {setToken} = rootStore.tokenStore
-  let navigate = useNavigate();
-
+  const {setToken, token} = rootStore.tokenStore;
+  const navigate = useNavigate();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   //Local state holding user input
@@ -17,30 +17,21 @@ const Login = () => {
     username: "",
     password: "",
     grant_type: "password",
-  });
+  })
 
   //Function to set all of user input into local state
   const handleInput = (e) => {
     const { name, value } = e.target;
     setFormValue({ ...formValue, [name]: value });
-  };
+  }
 
   //Function handling API POST request
-  const handlePost = async function (e) {
-    e.preventDefault();
-    let res = await axios({
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      data: formValue,
-      url: "https://api.baasic.com/beta/new-react-project/login",
-    });
-    let data = await res.data;
+  const handlePost = async function () {
+    const response = await callApi(token, "POST", formValue, "", {});
+    const data = await response.data;
     navigate("/home");
     setToken(data);
-   
-  };
+  }
 
   return (
     <div className="root">
@@ -125,7 +116,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default observer(Login);

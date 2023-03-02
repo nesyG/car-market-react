@@ -1,30 +1,24 @@
 import { runInAction } from "mobx";
-import axios from "axios";
+import callApi from "../utils/callApi";
 
 export default async function handleSortFilterAndPages(rootStore) {
   const { resetDefaultPage } = rootStore.paginationStore;
   const { getFilteredData } = rootStore.dataStore;
   const { params } = rootStore.filterStore;
   const { sortData } = rootStore.sortingStore;
+  const { token } = rootStore.tokenStore;
+  let query = `?page=1&rpp=12`;
+  if (sortData) {
+    query = query + `&sort=${sortData}`;
+  }
   try {
-    resetDefaultPage();
-
-    let url = `https://api.baasic.com/beta/new-react-project/resources/car?page=1&rpp=12`;
-
-    if (sortData) {
-      url = url + `&sort=${sortData}`;
-    }
-
-    let res = await axios.get(url, {
-      headers: { "Content-type": "application/json" },
-      params: params,
-    });
-    let data = await res.data;
+    const result = await callApi(token, "GET", {}, query, params);
+    const data = await result.data;
     runInAction(() => {
       getFilteredData(data);
     });
+    resetDefaultPage();
   } catch (error) {
-    console.log(`Your error is: ${error}`);
+    console.log(`Error: ${error}`);
   }
 }
-

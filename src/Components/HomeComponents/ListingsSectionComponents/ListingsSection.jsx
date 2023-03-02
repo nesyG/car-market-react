@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import PageToggleButton from "./PageToggleButton";
+import DeleteButton from "./DeleteButton";
+import EditListing from "./EditListing";
 import { observer } from "mobx-react";
 import { RootContext } from "../../../Stores/RootStore";
+import {Link} from "react-router-dom";
 import "./ListingsSection.css";
-import {Link} from "react-router-dom"
 
 const ListingsSection = () => {
   //Import relevant context
@@ -15,7 +17,7 @@ const ListingsSection = () => {
   //Fetch initial car data and save it to global state
   useEffect(() => {
     dataStore.getCarData(tokenStore.token);
-  }, [dataStore, tokenStore.token]);
+  }, [dataStore, tokenStore.token])
 
   //Function for setting sort state
   function setSortValue(e) {
@@ -43,7 +45,11 @@ const ListingsSection = () => {
             dataStore.carData.item.map((elem) => {
               return (
                 <div className="card car-card" key={elem.id}>
+                  <div className="link-and-delete-btn">
                   <Link to={`/singleListing/${elem.id}`}>More Info</Link>
+                  <EditListing {...elem}/>
+                  <DeleteButton {...elem}/>
+                  </div>
                   <span className="material-symbols-outlined">car_rental</span>
                   <div className="card-body">
                     <h4 className="card-title">{elem.car}</h4>
@@ -67,7 +73,7 @@ const ListingsSection = () => {
         </div>
         <PageToggleButton />
       </div>
-    );
-};
+    )
+}
 
 export default observer(ListingsSection);

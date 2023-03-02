@@ -1,0 +1,38 @@
+.new-listing-container {
+    border-radius: 1rem;
+    padding: 2rem 3.5rem;
+    width: 400px;
+    height: 700px;
+    position: absolute;
+    margin-top: 5rem;
+    margin-left: 60rem;
+    z-index: 1;
+    background: grey;
+}
+
+.new-listing-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-btn {
+    width: 12rem;
+    height: 4rem;
+    margin-top: 1.5rem;
+}
+
+.create-btn {
+    margin-top: 1rem;
+    width: 7rem;
+    height: 3rem;
+    border-radius: 1rem;
+}
+
+.close-btn {
+    width: 2rem;
+    height: 2rem;
+}
+
+.listing-heading {
+    margin-top: 1rem;
+}

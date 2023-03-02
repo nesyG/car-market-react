@@ -10,6 +10,6 @@ export default async function resetData(rootStore) {
     resetDefaultPage();
     getCarData(token);
   } catch (error) {
-    console.log(`Your error is: ${error}`);
+    console.log(`Error: ${error}`);
   }
 }

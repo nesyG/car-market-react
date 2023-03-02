@@ -19,7 +19,7 @@ const App = () => {
         </Suspense>
       </RootProvider>
     </>
-  );
-};
+  )
+}
 
 export default App;

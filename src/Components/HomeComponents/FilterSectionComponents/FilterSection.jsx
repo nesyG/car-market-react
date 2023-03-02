@@ -32,15 +32,14 @@ const FilterSection = () => {
       labelText: "Any particular color?",
       labelPlaceholder: "Navy Blue",
     },
-  ];
+  ]
 
   //SearchQuery Handling
   function handleData(e) {
     const prop = e.target.name;
     const value = e.target.value;
-
     setFilterData(prop, value);
-    makeParams()
+    makeParams();
   }
 
   return (
@@ -69,7 +68,7 @@ const FilterSection = () => {
       <MainSearchButton />
       <ResetDataButton />
     </div>
-  );
-};
+  )
+}
 
 export default observer(FilterSection);

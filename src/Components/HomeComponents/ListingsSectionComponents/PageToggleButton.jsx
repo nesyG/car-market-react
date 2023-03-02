@@ -1,8 +1,8 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { RootContext } from "../../../Stores/RootStore";
-import "./PageToggleButton.css";
 import changePages from "../../../Common/services/changePagesService";
+import "./PageToggleButton.css";
 
 const PageToggleButton = () => {
   const rootStore = React.useContext(RootContext);
@@ -30,7 +30,7 @@ const PageToggleButton = () => {
         Next Page
       </button>
     </div>
-  );
-};
+  )
+}
 
 export default observer(PageToggleButton);

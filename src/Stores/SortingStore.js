@@ -1,19 +1,19 @@
 import { makeAutoObservable } from "mobx";
 
- export default class SortStore {
-    sortData = "";
-    constructor() {
-      makeAutoObservable(this, {}, { autoBind: true });
-    }
-    setSortData(info) {
-      this.sortData = info;
-    }
-    resetSortData() {
-      this.sortData = "";
-    }
+export default class SortStore {
+  sortData = "";
+  constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
   }
 
-  
+  setSortData(info) {
+    this.sortData = info;
+  }
+
+  resetSortData() {
+    this.sortData = "";
+  }
+}
 
 //Example with functions, not preferred according to documentation?
 

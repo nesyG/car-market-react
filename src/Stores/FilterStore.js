@@ -18,13 +18,12 @@ export default class FilterStore {
       if (this.filterData[key])
         properties.push(`"${key}"` + "=" + `'${this.filterData[key]}'`);
     }
-
     let params = {};
     if (properties.length) {
       properties = properties.join("AND");
       params = {
         searchQuery: `WHERE ${properties}`,
-      };
+      }
     }
     this.params = params;
   }
@@ -32,7 +31,7 @@ export default class FilterStore {
   setFilterData(prop, value) {
     this.filterData = { ...this.filterData, [prop]: value };
   }
- 
+
   resetFilterState() {
     this.filterData = {
       car: "",
