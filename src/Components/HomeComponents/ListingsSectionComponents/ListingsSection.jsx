@@ -1,48 +1,38 @@
 import React, { useEffect } from "react";
 import PageToggleButton from "./PageToggleButton";
 import DeleteButton from "./DeleteButton";
+import SortDropdown from "./SortDropdown";
 import EditListing from "./EditListing";
 import { observer } from "mobx-react";
 import { RootContext } from "../../../Stores/RootStore";
 import {Link} from "react-router-dom";
-import "./ListingsSection.css";
+import "./listingsSection.css";
+
 
 const ListingsSection = () => {
   //Import relevant context
   const rootStore = React.useContext(RootContext);
-  const dataStore = rootStore.dataStore;
-  const sortingStore = rootStore.sortingStore;
-  const tokenStore = rootStore.tokenStore
+  const {getCarData, carData} = rootStore.dataStore;
+  const {setSortData, sortData} = rootStore.sortFilterPagingStore;
+  const {token} = rootStore.tokenStore
 
   //Fetch initial car data and save it to global state
   useEffect(() => {
-    dataStore.getCarData(tokenStore.token);
-  }, [dataStore, tokenStore.token])
+    getCarData(token);
+  }, [] )
 
   //Function for setting sort state
   function setSortValue(e) {
     const { value } = e.target;
-    sortingStore.setSortData(value);
+    setSortData(value);
   }
 
     return (
       <div className="data-container">
-        <div className="sorting-section">
-          <span className="lead">Sort by:</span>
-          <select
-            className="form-select form-select-sm sort-container"
-            aria-label="Default select"
-            onChange={setSortValue}
-            value={sortingStore.sortData}
-          >
-            <option value={""}>{null}</option>
-            <option value="price|asc">Price (Lowest to Highest)</option>
-            <option value="price|desc">Price (Highest to Lowest)</option>
-          </select>
-        </div>
+       <SortDropdown sortData={sortData} setSortValue={setSortValue}/>
         <div className="card-container">
-          {dataStore.carData !== undefined && dataStore.carData.item ? (
-            dataStore.carData.item.map((elem) => {
+          {carData !== undefined && carData.item ? (
+            carData.item.map((elem) => {
               return (
                 <div className="card car-card" key={elem.id}>
                   <div className="link-and-delete-btn">

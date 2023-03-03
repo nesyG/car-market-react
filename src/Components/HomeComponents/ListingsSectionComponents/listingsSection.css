@@ -84,15 +84,27 @@
 }
 
 .editing-container {
-  
   border-radius: 1rem;
   padding: 2rem 3.5rem;
   width: 400px;
   height: 700px;
   position: absolute;
-  margin-top: 5rem;
+  top: 30%;
+  right: 5%;
   z-index: 1;
-  background: grey;
+  background: rgb(28, 111, 170)
+}
+
+.edit-main-text {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.update-btn {
+  margin-top: 1rem;
+  width: 7rem;
+  height: 3rem;
+  border-radius: 1rem;
 }
 
 

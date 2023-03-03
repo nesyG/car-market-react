@@ -2,10 +2,8 @@ import { runInAction } from "mobx";
 import callApi from "../utils/callApi";
 
 export default async function handleSortFilterAndPages(rootStore) {
-  const { resetDefaultPage } = rootStore.paginationStore;
+  const { resetDefaultPage, params, sortData  } = rootStore.sortFilterPagingStore;
   const { getFilteredData } = rootStore.dataStore;
-  const { params } = rootStore.filterStore;
-  const { sortData } = rootStore.sortingStore;
   const { token } = rootStore.tokenStore;
   let query = `?page=1&rpp=12`;
   if (sortData) {

@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react";
 import { RootContext } from "../../../Stores/RootStore";
 import deleteSingleListing from "../../../Common/services/deleteSingleListingService";
-import "./ListingsSection.css";
+import "./listingsSection.css";
 
 const DeleteButton = (props) => {
   const rootStore = React.useContext(RootContext);

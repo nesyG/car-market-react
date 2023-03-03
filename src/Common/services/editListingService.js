@@ -3,16 +3,18 @@ import callApi from "../utils/callApi";
 export default async function editListing(rootStore, carEditInput, carId) {
   const { token } = rootStore.tokenStore;
   const { getCarData } = rootStore.dataStore;
-  const { resetDefaultPage } = rootStore.paginationStore;
-  const { resetFilterState } = rootStore.filterStore;
-  const { resetSortData } = rootStore.sortingStore;
+  const { resetDefaultPage, resetFilterState, resetSortData } = rootStore.sortFilterPagingStore;
   const query = `/${carId}`;
   try {
-    const res = await callApi(token, "PUT", carEditInput, query, {});
+    const response = await callApi(token, "PUT", carEditInput, query, {});
+    console.log(response)
     getCarData(token);
     resetDefaultPage();
     resetFilterState();
     resetSortData();
+    if(response.status === 204) {
+      alert("You have succesfully edited the listing!")
+    }
   } catch (error) {
     console.log(`Error: ${error}`);
   }

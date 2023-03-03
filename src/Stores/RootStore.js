@@ -1,26 +1,20 @@
 import React from "react";
-import PaginationStore from "./PaginationStore";
 import DataStore from "./DataStore";
-import FilterStore from "./FilterStore";
-import SortingStore from "./SortingStore";
 import TokenStore from "./TokenStore";
+import {SortFilterPagingStore} from "./SortFilterPagingStore"
 
 export const RootContext = React.createContext();
 
 export const RootProvider = ({ children }) => {
   class RootStore {
     dataStore = DataStore;
-    filterStore = FilterStore;
-    paginationStore = PaginationStore;
-    sortingStore = SortingStore;
     tokenStore = TokenStore;
+    sortFilterPagingStore = SortFilterPagingStore;
 
     constructor() {
-      this.paginationStore = new PaginationStore(this);
       this.dataStore = new DataStore(this);
-      this.filterStore = new FilterStore(this);
-      this.sortingStore = new SortingStore(this);
       this.tokenStore = new TokenStore(this);
+      this.sortFilterPagingStore = new SortFilterPagingStore(this);
     }
   }
   const rootStore = new RootStore();

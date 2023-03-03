@@ -1,8 +1,6 @@
 export default async function resetData(rootStore) {
-  const { resetDefaultPage } = rootStore.paginationStore;
+  const { resetDefaultPage, resetFilterState, resetSortData } = rootStore.sortFilterPagingStore;
   const { getCarData } = rootStore.dataStore;
-  const { resetFilterState } = rootStore.filterStore;
-  const { resetSortData } = rootStore.sortingStore;
   const { token } = rootStore.tokenStore;
   try {
     resetSortData();

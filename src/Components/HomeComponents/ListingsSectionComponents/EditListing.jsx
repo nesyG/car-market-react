@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { RootContext } from "../../../Stores/RootStore";
 import editListing from "../../../Common/services/editListingService";
-import "./ListingsSection.css";
+import "./listingsSection.css";
 
 const EditListing = (props) => {
   const carId = props.id;
   const rootStore = React.useContext(RootContext);
+  //Local state to toggle edit content
   const [editIsOpened, setEditIsOpened] = useState(false);
   function toggleListingWindow() {
     setEditIsOpened(!editIsOpened);
   }
 
-  const [carEditInput, setCarEditInput] = useState({
+  //State to track users edits
+  let carData = {
     id: carId,
     car: props.car,
     price: props.price,
@@ -21,7 +23,8 @@ const EditListing = (props) => {
     car_vin: props.car_vin,
     availability: props.availability,
     date_added: props.date_added,
-  })
+  }
+  const [carEditInput, setCarEditInput] = useState(carData)
 
   function handleInput(e) {
     if (e.target.name === "car_model_year") {
@@ -41,7 +44,7 @@ const EditListing = (props) => {
       {editIsOpened && (
         <div className="editing-container">
           <button onClick={toggleListingWindow}>x</button>
-          <h2>Edit your car listing</h2>
+          <h2 className="edit-main-text">Edit your car listing</h2>
           <div className="new-listing-form">
             <label>Your car brand:</label>
             <input
@@ -83,7 +86,7 @@ const EditListing = (props) => {
               value={carEditInput.price}
               onChange={handleInput}
             ></input>
-            <button 
+            <button className="update-btn"
               onClick={() => {
                 toggleListingWindow(),
                   editListing(rootStore, carEditInput, carId);

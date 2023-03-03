@@ -2,11 +2,11 @@ import React from "react";
 import { observer } from "mobx-react";
 import { RootContext } from "../../../Stores/RootStore";
 import changePages from "../../../Common/services/changePagesService";
-import "./PageToggleButton.css";
+import "./pageToggleButton.css";
 
 const PageToggleButton = () => {
   const rootStore = React.useContext(RootContext);
-  const {setPreviousPage, setNextPage, page} = rootStore.paginationStore;
+  const {setPreviousPage, setNextPage, page} = rootStore.sortFilterPagingStore;
 
   return (
     <div className="pagination-section">

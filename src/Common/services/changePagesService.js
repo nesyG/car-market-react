@@ -2,10 +2,8 @@ import { runInAction } from "mobx";
 import callApi from "../utils/callApi";
 
 export default async function changePages(rootStore) {
-  const { setPreviousPage, page } = rootStore.paginationStore;
+  const { setPreviousPage, page, params, sortData } = rootStore.sortFilterPagingStore;
   const { getFilteredData } = rootStore.dataStore;
-  const { params } = rootStore.filterStore;
-  const { sortData } = rootStore.sortingStore;
   const { token } = rootStore.tokenStore;
 
   let query = `?page=${page}&rpp=12`;

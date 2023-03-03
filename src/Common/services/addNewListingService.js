@@ -6,6 +6,9 @@ export default async function addNewListing(rootStore, carInput) {
   try {
     const response = await callApi(token, "POST", carInput, "", {});
     getCarData(token);
+    if(response.status === 201) {
+      alert("Your listing has been succesfully created!");
+    }
   } catch (error) {
     console.log(`Error: ${error}`);
   }

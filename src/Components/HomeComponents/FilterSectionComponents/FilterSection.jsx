@@ -3,12 +3,13 @@ import { observer } from "mobx-react";
 import { RootContext } from "../../../Stores/RootStore";
 import MainSearchButton from "./MainSearchButton";
 import ResetDataButton from "./ResetDataButton";
-import "./FilterSection.css";
+import "./filterSection.css";
 
 const FilterSection = () => {
   //Import relevant context
   const rootStore = React.useContext(RootContext);
-  const { filterData, setFilterData, makeParams } = rootStore.filterStore;
+  const { filterData, setFilterData, makeParams } =
+    rootStore.sortFilterPagingStore;
 
   //Category specific information (for schema properties)
   const filterCategories = [
@@ -32,7 +33,7 @@ const FilterSection = () => {
       labelText: "Any particular color?",
       labelPlaceholder: "Navy Blue",
     },
-  ]
+  ];
 
   //SearchQuery Handling
   function handleData(e) {
@@ -68,7 +69,7 @@ const FilterSection = () => {
       <MainSearchButton />
       <ResetDataButton />
     </div>
-  )
-}
+  );
+};
 
 export default observer(FilterSection);
