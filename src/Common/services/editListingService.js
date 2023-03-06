@@ -7,7 +7,6 @@ export default async function editListing(rootStore, carEditInput, carId) {
   const query = `/${carId}`;
   try {
     const response = await callApi(token, "PUT", carEditInput, query, {});
-    console.log(response)
     getCarData(token);
     resetDefaultPage();
     resetFilterState();
@@ -15,6 +14,7 @@ export default async function editListing(rootStore, carEditInput, carId) {
     if(response.status === 204) {
       alert("You have succesfully edited the listing!")
     }
+    console.log(response)
   } catch (error) {
     console.log(`Error: ${error}`);
   }

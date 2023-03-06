@@ -24,13 +24,15 @@ const EditListing = (props) => {
     availability: props.availability,
     date_added: props.date_added,
   }
-  const [carEditInput, setCarEditInput] = useState(carData)
 
+  const [carEditInput, setCarEditInput] = useState(carData)
   function handleInput(e) {
     if (e.target.name === "car_model_year") {
-      e.target.value = Number(e.target.value);
+      let a = Number(e.target.value)
+      setCarEditInput({ ...carEditInput, [e.target.name]: a})  
+    } else {
+      setCarEditInput({ ...carEditInput, [e.target.name]: e.target.value });
     }
-    setCarEditInput({ ...carEditInput, [e.target.name]: e.target.value });
   }
 
   return (
@@ -64,6 +66,7 @@ const EditListing = (props) => {
             ></input>
             <label>Your car model year:</label>
             <input
+            
               name="car_model_year"
               type="text"
               className="form-control"
