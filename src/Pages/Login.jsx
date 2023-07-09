@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { observer } from "mobx-react";
 import { useNavigate } from "react-router-dom";
 import { RootContext } from "../Stores/RootStore";
+import { GoogleLogin } from '@react-oauth/google';
 import callApi from "../Common/utils/callApi";
 import "./Login.css";
 
@@ -82,7 +83,20 @@ const Login = () => {
             </button>
           </div>
         )}
+         <div id="googleLogin">
+      <GoogleLogin
+            onSuccess={credentialResponse => {
+              console.log(credentialResponse);
+            }}
+          
+            onError={() => {
+              console.log('Login Failed');
+            }}
+          
+          />
+          </div>
       </div>
+     
       <div className="login-card-container">
         <div className="card login-card">
           <div className="card-body login-card-body">
