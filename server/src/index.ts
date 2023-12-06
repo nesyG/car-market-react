@@ -53,3 +53,5 @@ app.listen(process.env.PORT, () => {
 app.get('/', (req, res) => {
   res.send({hello: 'Server'});
 })
+
+module.exports = app

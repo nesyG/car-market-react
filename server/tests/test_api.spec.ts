@@ -5,14 +5,14 @@ const app = require('../src/index.ts')
 //const app = require('../index');
 
 describe('API Endpoint Tests', () => {
-  it('should return a message from /home', (done) => {
+  it('should return a message from /', (done) => {
     request(app)
       .get('/')
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);
-        const { message } = res.body;
-        if (!message) return done(new Error('Response does not contain a message.'));
+        const { hello } = res.body;
+        if (!hello) return done(new Error('Response does not contain a message.'));
         done();
       });
   });
