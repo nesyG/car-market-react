@@ -2,7 +2,6 @@ import request from 'supertest';
 import { describe, it } from 'mocha';
 
 const app = require('../src/index.ts')
-//const app = require('../index');
 
 describe('API Endpoint Tests', () => {
   it('should return a message from /', (done) => {
