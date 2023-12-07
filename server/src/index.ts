@@ -18,17 +18,17 @@ app.use(express.json());
 app.use(cors());
 
 //Connect To Database
-// const dbConnectionString: string = process.env.DB_STRING || "";
-// async function connectDB(): Promise<void> {
-//   try {
-//     await connect(dbConnectionString);
-//     console.log("MongoDB Connected");
-//   } catch (err) {
-//     console.log(err);
-//     process.exit(1);
-//   }
-// }
-// connectDB();
+const dbConnectionString: string = process.env.DB_STRING || "";
+async function connectDB(): Promise<void> {
+  try {
+    await connect(dbConnectionString);
+    console.log("MongoDB Connected");
+  } catch (err) {
+    console.log(err);
+    process.exit(1);
+  }
+}
+connectDB();
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
