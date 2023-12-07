@@ -6,13 +6,6 @@ import passport from "passport";
 const app = express();
 const cors = require('cors'); 
 
-//Extend Request interface for user
-declare module "express" {
-  export interface Request {
-    user?: any;
-  }
-}
-
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
 
@@ -53,3 +46,5 @@ app.listen(process.env.PORT, () => {
 app.get('/', (req, res) => {
   res.send({hello: 'Server'});
 })
+
+module.exports = app
