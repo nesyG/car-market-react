@@ -1,14 +1,13 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
-const jwt = require("jsonwebtoken");
 
 export interface IUser {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
-  isVerified: boolean;
-  uniqueString: string;
+  isVerified?: boolean;
+  uniqueString?: string;
 }
 
 const UsersSchema = new Schema<IUser>({
@@ -29,7 +28,7 @@ const UsersSchema = new Schema<IUser>({
     type: String,
     required: true,
   },
-  isVerified: { type: Boolean, default: false, required: true },
+  isVerified: { type: Boolean, default: false},
   uniqueString: {
     type: String,
   },

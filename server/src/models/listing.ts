@@ -8,11 +8,11 @@ export interface IListing {
 
 const UsersSchema = new Schema<IListing>({
   user_id:  { 
-    type: mongoose.Schema.Types.ObjectId, ref: "User", required: true
+    type: mongoose.Schema.Types.ObjectId, ref: "User", required: false
 },
   listing_id: {
     type: String,
-    required:true,
+    required:false,
   },
   car_price: {
     type: String,
