@@ -1,23 +1,21 @@
 import mongoose, { Schema, Types } from "mongoose";
+import Car, {ICar } from "./car"
 
 export interface IListing {
   user_id: Types.ObjectId;
-  listing_id: string
-  car_price: string;
+  price: string;
+  car: ICar; 
 }
 
 const ListingSchema = new Schema<IListing>({
   user_id:  { 
     type: mongoose.Schema.Types.ObjectId, ref: "User", required: false
 },
-  listing_id: {
-    type: String,
-    required:false,
-  },
-  car_price: {
+  price: {
     type: String,
     required: true,
   },
+  car: Car,
 });
 
 export default mongoose.model<IListing>("Listing", ListingSchema);
