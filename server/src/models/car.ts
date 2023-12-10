@@ -7,7 +7,7 @@ export interface ICar {
   user_id: Types.ObjectId;
 }
 
-const UsersSchema = new Schema<ICar>({
+const CarSchema = new Schema<ICar>({
   car_model: {
     type: String,
     required: true,
@@ -20,7 +20,6 @@ const UsersSchema = new Schema<ICar>({
     type: String,
     required: true,
   },
-  user_id: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
-export default mongoose.model<ICar>("Car", UsersSchema);
+export default mongoose.model<ICar>("Car", CarSchema);

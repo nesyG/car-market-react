@@ -6,7 +6,7 @@ export interface IListing {
   car_price: string;
 }
 
-const UsersSchema = new Schema<IListing>({
+const ListingSchema = new Schema<IListing>({
   user_id:  { 
     type: mongoose.Schema.Types.ObjectId, ref: "User", required: false
 },
@@ -20,4 +20,4 @@ const UsersSchema = new Schema<IListing>({
   },
 });
 
-export default mongoose.model<IListing>("Listing", UsersSchema);
+export default mongoose.model<IListing>("Listing", ListingSchema);
