@@ -12,7 +12,7 @@
       "declaration": true,                 // Generate corresponding `.d.ts` files
       "sourceMap": true,                // Generate source maps
     },
-    "include": ["./src/*"],
+    "include": ["src/**/*.ts"],           // Specify files to include in compilation
     "exclude": ["node_modules"]            // Specify files to exclude from compilation
   }
   
