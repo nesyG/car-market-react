@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import express from "express";
 import { connect } from "mongoose";
+import mockRoutes from "./routes/mock"
 import passport from "passport";
 
 const app = express();
@@ -18,17 +19,17 @@ app.use(express.json());
 app.use(cors());
 
 //Connect To Database
-// const dbConnectionString: string = process.env.DB_STRING || "";
-// async function connectDB(): Promise<void> {
-//   try {
-//     await connect(dbConnectionString);
-//     console.log("MongoDB Connected");
-//   } catch (err) {
-//     console.log(err);
-//     process.exit(1);
-//   }
-// }
-// connectDB();
+const dbConnectionString: string = process.env.DB_STRING || "";
+async function connectDB(): Promise<void> {
+  try {
+    await connect(dbConnectionString);
+    console.log("MongoDB Connected");
+  } catch (err) {
+    console.log(err);
+    process.exit(1);
+  }
+}
+connectDB();
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -46,5 +47,6 @@ app.listen(process.env.PORT, () => {
 app.get('/', (req, res) => {
   res.send({hello: 'Server'});
 })
+app.use("/mock", mockRoutes); //Used only locally for quick db population and clearing, when needed
 
 module.exports = app
