@@ -1,13 +1,12 @@
 import { Request, Response } from "express";
 import User from "../models/user";
-import Listing from "../models/listing";
-import Car from "../models/car";
+import  CarModel  from '../models/car';
+import  ListingModel  from '../models/listing';
 
 export const mockController = {
     mockData: async (req: Request, res: Response) => {
         try {
             if (req.params.type == "create") {
-
                 const newUser: object = {
                     firstName: 'test',
                     lastName: 'test1',
@@ -15,9 +14,9 @@ export const mockController = {
                     password: 'test123',
                 }
 
-                const newListing: object = {
-                    car_price: '1100$',
-                }
+                const user = new User(newUser);
+                await user.save();
+                const userId = user._id;
 
                 const newCar: object = {
                     car_model: 'Ford',
@@ -25,23 +24,25 @@ export const mockController = {
                     car_color: 'green',
                 }
 
-                const user = new User(newUser);
-                await user.save();
+                const car = new CarModel(newCar);
+                await car.save().catch(error => console.error('Error saving user:', error));;
 
-                const listing = new Listing(newListing);
-                await listing.save();
+                const newListing: object = {
+                    user_id: userId, 
+                    car_price: '1100$',
+                    car: car,
+                }
 
-                const car = new Car(newCar);
-                await car.save();
+                const listing = new ListingModel(newListing);
+                await listing.save().catch(error => console.error('Error saving user:', error));;
 
                 return res.status(200).json({
                     message: "Mock creating completed."
                 })
-            }
-            else if (req.params.type == "delete") {
-                await User.deleteMany();
-                await Listing.deleteMany();
-                await Car.deleteMany();
+            } else if (req.params.type == "delete") {
+                await User.deleteOne();
+                await ListingModel.deleteOne();
+                await CarModel.deleteOne();
                 return res.status(200).json({
                     message: "Mock deleting completed."
                 })

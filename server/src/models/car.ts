@@ -1,5 +1,4 @@
 import mongoose, { Schema, Types } from "mongoose";
-import { Type } from "typescript";
 
 export interface ICar {
   car_model: string;
@@ -22,4 +21,5 @@ const CarSchema = new Schema<ICar>({
   },
 });
 
-export default mongoose.model<ICar>("Car", CarSchema);
+const carModel = mongoose.model<ICar>('Car', CarSchema);
+export default carModel
