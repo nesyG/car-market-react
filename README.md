@@ -1,7 +1,7 @@
 # Car Market React App
 
 ## `Description`
-React application for browsing, filtering and sorting car data available in Baasic backend.
+React application for browsing, filtering and sorting car data from mongoDb.
 Mobx state managment.
 Inputs are case-sensitive.
 
