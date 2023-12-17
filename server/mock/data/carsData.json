@@ -1,0 +1,17 @@
+[
+    {
+        "car_model": "Toyota Camry",
+        "car_model_year": "2022",
+        "car_color": "Blue"
+    },
+    {
+        "car_model": "Honda Accord",
+        "car_model_year": "2021",
+        "car_color": "Red"
+    },
+    {
+        "car_model": "Ford Mustang",
+        "car_model_year": "2023",
+        "car_color": "Black"
+    }
+]

@@ -2,7 +2,6 @@ import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
 
 export interface IUser {
-  _id: Schema.Types.ObjectId,
   firstName: string;
   lastName: string;
   email: string;
@@ -12,7 +11,6 @@ export interface IUser {
 }
 
 const UsersSchema = new Schema<IUser>({
-  _id: Schema.Types.ObjectId,
   firstName: {
     type: String,
     required: true,

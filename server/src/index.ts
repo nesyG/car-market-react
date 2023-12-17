@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import express from "express";
 import { connect } from "mongoose";
-import mockRoutes from "./routes/mock"
 import passport from "passport";
 
 const app = express();
@@ -47,6 +46,5 @@ app.listen(process.env.PORT, () => {
 app.get('/', (req, res) => {
   res.send({hello: 'Server'});
 })
-app.use("/mock", mockRoutes); //Used only locally for quick db population and clearing, when needed
 
 module.exports = app
