@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import express from "express";
 import { connect } from "mongoose";
+import mainRoutes from "./routes/main"
 import passport from "passport";
 
 const app = express();
@@ -43,8 +44,6 @@ app.listen(process.env.PORT, () => {
 });
 
 //Routes for which the server is listening
-app.get('/', (req, res) => {
-  res.send({hello: 'Server'});
-})
+app.get('/', mainRoutes);
 
 module.exports = app
