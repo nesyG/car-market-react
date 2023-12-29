@@ -5,8 +5,8 @@ const mainRoutes = Router();
 
 mainRoutes.get("/car/:id", mainController.getCar);
 
-//mainRoutes.get("/listing/:id", mainController.getListing);
+mainRoutes.get("/listing/:id", mainController.getListing);
 
-//mainRoutes.get("/user/:id", mainController.getUser);
+mainRoutes.get("/user/:id", mainController.getUser);
 
 export default mainRoutes;

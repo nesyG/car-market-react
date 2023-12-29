@@ -44,6 +44,6 @@ app.listen(process.env.PORT, () => {
 });
 
 //Routes for which the server is listening
-app.get('/', mainRoutes);
+app.use('/', mainRoutes);
 
 module.exports = app
