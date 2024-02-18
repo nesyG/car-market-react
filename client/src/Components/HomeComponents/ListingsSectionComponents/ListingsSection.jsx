@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PageToggleButton from "./PageToggleButton";
 import DeleteButton from "./DeleteButton";
 import SortDropdown from "./SortDropdown";
 import EditListing from "./EditListing";
 import { observer } from "mobx-react";
 import { RootContext } from "../../../Stores/RootStore";
-import {Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios'; 
 import "./listingsSection.css";
 
 
@@ -16,10 +17,32 @@ const ListingsSection = () => {
   const {setSortData, sortData} = rootStore.sortFilterPagingStore;
   const {token} = rootStore.tokenStore
 
+  const [imageData, setImageData] = useState([]);
+  const navigate = useNavigate();
+
   //Fetch initial car data and save it to global state
   useEffect(() => {
     getCarData(token);
-  }, [] )
+  }, []);
+
+  useEffect(() => {
+    // Fetch images for each car model
+    const fetchCarImages = async () => {
+      try {
+        const promises = carData.item.map(async (elem) => {
+          const response = await axios.get(`https://api.unsplash.com/search/photos?query=${elem.car}&client_id=pIgDUaF0Y5hYw2zU8z-my2JvqS_W5Bq3J0g-OWuD44s`);
+          return response.data.results[0]; // Assuming you want to use the first image for each car model
+        });
+        const imageDataArray = await Promise.all(promises);
+        setImageData(imageDataArray);
+      } catch (error) {
+        console.error('Error fetching car images:', error);
+      }
+    };
+
+    fetchCarImages();
+  }, [carData]);
+
 
   //Function for setting sort state
   function setSortValue(e) {
@@ -27,43 +50,41 @@ const ListingsSection = () => {
     setSortData(value);
   }
 
-    return (
-      <div className="data-container">
-       <SortDropdown sortData={sortData} setSortValue={setSortValue}/>
-        <div className="card-container">
-          {carData !== undefined && carData.item ? (
-            carData.item.map((elem) => {
-              return (
-                <div className="card car-card" key={elem.id}>
-                  <div className="link-and-delete-btn">
-                  <Link to={`/singleListing/${elem.id}`}>More Info</Link>
-                  <EditListing {...elem}/>
-                  <DeleteButton {...elem}/>
-                  </div>
-                  <span className="material-symbols-outlined">car_rental</span>
-                  <div className="card-body">
-                    <h4 className="card-title">{elem.car}</h4>
-                    <ul className="list-group list-group-flush">
-                      <li className="list-group-item">{elem.car_model}</li>
-                      <li className="list-group-item">{elem.car_model_year}</li>
-                      <li className="list-group-item">{elem.car_color}</li>
-                      <li className="list-group-item price-text">{elem.price}</li>
-                    </ul>
-                  </div>
-                </div>
-              );
-            })
-          ) : (
-            <div className="spinner">
-              <div className="spinner-border" role="status">
-                <span className="visually-hidden">Loading...</span>
+  return (
+    <div className="data-container bg-light">
+      <SortDropdown sortData={sortData} setSortValue={setSortValue} />
+      <div className="card-container">
+        {carData !== undefined && carData.item ? (
+           carData.item.map((elem, index) => (
+            <div className="card car-card" key={elem.id}>
+              <div className="link-and-delete-btn">
+                <button className="btn btn-light col-4" onClick={() => navigate(`/singleListing/${elem.id}`, { state: { ...elem } })}>More info</button>
+                <EditListing {...elem} />
+                <DeleteButton {...elem} />
+              </div>
+              <img id="carImg" src={imageData[index]?.urls?.small} alt="Car Image"/> {/* Use optional chaining to handle cases where imageData may be empty */}
+              <div className="card-body">
+                <h4 className="card-title">{elem.car}</h4>
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item">{elem.car_model}</li>
+                  <li className="list-group-item">{elem.car_model_year}</li>
+                  <li className="list-group-item">{elem.car_color}</li>
+                  <li className="list-group-item price-text">{elem.price}</li>
+                </ul>
               </div>
             </div>
-          )}
-        </div>
-        <PageToggleButton />
+          ))
+        ) : (
+          <div className="spinner">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        )}
       </div>
-    )
+      <PageToggleButton />
+    </div>
+  )
 }
 
 export default observer(ListingsSection);

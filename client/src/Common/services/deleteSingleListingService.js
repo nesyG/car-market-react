@@ -1,4 +1,4 @@
-import callApi from "../utils/callApi";
+import callApi from "../utils/callCarApi";
 
 export default async function deleteSingleListing(rootStore, carId) {
   const { token } = rootStore.tokenStore;

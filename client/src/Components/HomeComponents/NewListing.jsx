@@ -121,7 +121,7 @@ const NewListing = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div>       
       )}
     </>
   );

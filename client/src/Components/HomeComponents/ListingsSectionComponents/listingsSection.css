@@ -1,10 +1,9 @@
 .data-container {
-  border: 1px grey solid;
+  border: 1px #8080801c solid;
   width: 80%;
   height: 100%;
   margin-left: 1rem;
   position: relative;
-  background-color: rgb(80, 80, 80);
 }
 
 .sort-section {
@@ -22,7 +21,7 @@
   flex-direction: column;
   width: 20%;
   margin: 1.5rem;
-  border: 1px solid grey;
+  border: 1px solid #80808070;
   padding: 0.5rem;
 }
 .card-body {
@@ -43,7 +42,6 @@
 }
 
 .sorting-section {
-  color: aliceblue;
   display: flex;
   margin-top: 1.2rem;
   margin-left: 5.4rem;
@@ -63,7 +61,8 @@
 }
 
 .link-and-delete-btn {
- margin-left: 3rem;
+ display:flex;
+ justify-content:space-around;
 }
 
 .edit-btn {
@@ -71,8 +70,6 @@
   height: 50px;
   width: 50px;
   overflow: hidden;
-  padding: 0 20px;
-  margin-left: .5rem;
 }
 
 .btn-symbol {
@@ -105,6 +102,12 @@
   width: 7rem;
   height: 3rem;
   border-radius: 1rem;
+}
+
+#carImg {
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 10px;
 }
 
 

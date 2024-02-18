@@ -10,7 +10,7 @@ const DeleteButton = (props) => {
   return (
     <>
       <button
-        className="btn btn-light btn-sm edit-btn"
+        className="btn btn-light edit-btn col-4"
         onClick={() => {
           deleteSingleListing(rootStore, carId)
         }}

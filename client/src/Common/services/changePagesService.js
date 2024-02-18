@@ -1,5 +1,5 @@
 import { runInAction } from "mobx";
-import callApi from "../utils/callApi";
+import callApi from "../utils/callCarApi";
 
 export default async function changePages(rootStore) {
   const { setPreviousPage, page, params, sortData } = rootStore.sortFilterPagingStore;

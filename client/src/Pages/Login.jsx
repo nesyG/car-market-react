@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { observer } from "mobx-react";
 import { useNavigate } from "react-router-dom";
 import { RootContext } from "../Stores/RootStore";
-import { GoogleLogin } from '@react-oauth/google';
-import callApi from "../Common/utils/callApi";
+import callCarApi from "../Common/utils/callCarApi";
 import "./Login.css";
 
 
@@ -28,7 +27,7 @@ const Login = () => {
 
   //Function handling API POST request
   const handlePost = async function () {
-    const response = await callApi(token, "POST", formValue, "", {});
+    const response = await callCarApi(token, "POST", formValue, "", {});
     const data = await response.data;
     navigate("/home");
     setToken(data);
@@ -83,18 +82,6 @@ const Login = () => {
             </button>
           </div>
         )}
-         <div id="googleLogin">
-      <GoogleLogin
-            onSuccess={credentialResponse => {
-              console.log(credentialResponse);
-            }}
-          
-            onError={() => {
-              console.log('Login Failed');
-            }}
-          
-          />
-          </div>
       </div>
      
       <div className="login-card-container">

@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
-export  class SortFilterPagingStore {
+export class SortFilterPagingStore {
   page = 1;
   sortData = "";
   params = {};
@@ -53,6 +53,7 @@ export  class SortFilterPagingStore {
       }
     }
     this.params = params;
+    console.log(params)
   }
 
   setFilterData(prop, value) {

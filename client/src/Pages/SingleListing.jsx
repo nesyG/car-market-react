@@ -1,11 +1,13 @@
 import React from "react";
 import SingleCarItem from "../Components/SingleListingComponents/SingleCarItem";
+import { useLocation } from "react-router-dom";
 
 //Left for future implementation
-const SingleListing = () => {
+const SingleListing = (props) => {
+  const location = useLocation();
   return (
     <>
-      <SingleCarItem/>
+      <SingleCarItem props={location.state}/>
     </>
   )
 }
