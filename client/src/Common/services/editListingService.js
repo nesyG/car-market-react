@@ -14,7 +14,6 @@ export default async function editListing(rootStore, carEditInput, carId) {
     if(response.status === 204) {
       alert("You have succesfully edited the listing!")
     }
-    console.log(response)
   } catch (error) {
     console.log(`Error: ${error}`);
   }

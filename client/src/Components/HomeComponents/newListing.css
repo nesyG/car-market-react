@@ -16,9 +16,10 @@
 }
 
 .add-btn {
-    width: 12rem;
+    width: 90%;
     height: 4rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
+  margin-left:15px;
 }
 
 .create-btn {

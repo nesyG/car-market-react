@@ -33,7 +33,7 @@ const NewListing = () => {
   }
 
   return (
-    <>
+    <div data-testid="test-1">
       <button
         className="btn btn-light me-5 add-btn"
         data-bs-toggle="modal"
@@ -42,7 +42,7 @@ const NewListing = () => {
       >
         Add New Listing
       </button>
-      {windowIsOpened && (
+     
         <div
           className="modal fade"
           id="staticBackdrop"
@@ -122,8 +122,8 @@ const NewListing = () => {
             </div>
           </div>
         </div>       
-      )}
-    </>
+     
+    </div>
   );
 };
 

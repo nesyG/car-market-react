@@ -13,3 +13,8 @@
   position: relative;
   justify-content: center;
 }
+
+.filterListinContainer {
+  flex-direction: column;
+  display:flex;
+}

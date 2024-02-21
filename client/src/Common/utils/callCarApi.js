@@ -2,7 +2,6 @@ import axios from "axios";
 
 export default async function callCarApi (token, method,body={},query="",params={}) {
     let url = "https://api.baasic.com/v1/new-react-project/resources/car";
-    console.log(token)
     let contentType = "application/json"
     if(body.password) {
        url = "https://api.baasic.com/v1/new-react-project/login"

@@ -40,12 +40,11 @@ const EditListing = (props) => {
       <button
         className="btn btn-light edit-btn col-4"   
         data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop2"
-        onClick={toggleListingWindow}
+        data-bs-target="#staticBackdrop2"      
       >
         <span className="material-symbols-outlined btn-symbol">edit</span>
       </button>
-      {editIsOpened && (
+      
         <div
           className="modal fade"
           id="staticBackdrop2"
@@ -125,7 +124,7 @@ const EditListing = (props) => {
             </div>
           </div>
         </div>
-      )}
+      
     </>
   )
 }

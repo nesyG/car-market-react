@@ -65,6 +65,12 @@
  justify-content:space-around;
 }
 
+.link-and-delete-btn button {
+  border: none;
+    padding: 0 10px;
+    font-size: medium;
+}
+
 .edit-btn {
   display: inline-block;
   height: 50px;
@@ -74,6 +80,7 @@
 
 .btn-symbol {
   display: flex;
+  font-size: x-large;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -105,8 +112,9 @@
 }
 
 #carImg {
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
+  height:180px;
+  margin: 20px auto 0;
   border-radius: 10px;
 }
 

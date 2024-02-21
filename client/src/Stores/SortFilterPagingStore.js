@@ -53,7 +53,6 @@ export class SortFilterPagingStore {
       }
     }
     this.params = params;
-    console.log(params)
   }
 
   setFilterData(prop, value) {

@@ -1,17 +1,15 @@
 import React from "react";
 import "./singleCarItem.css"
-import NewListing from "../HomeComponents/NewListing";
 
 const SingleCarItem = (props) => {
     return (
         <>
-        <NewListing />
         <div className="single-car-container mt-5">
             <div className="col-10 mx-auto">
-                <div class="col-md-6 col-lg-4 mx-auto">
-                    <h3 class="mt-2 text-muted">{props.props.car}</h3>
+                <div className="col-md-6 col-lg-4 mx-auto">
+                    <img id="carImgSingle" src={props.props.imageData}></img>
+                    <h3 className="mt-2 text-muted">{props.props.car}</h3>
                     <div className="card mb-4">
-
                         <div className="card-body">
                             <p className="card-text">
                             This {props.props.car_model} is a reliable and fuel-efficient sedan that's perfect for daily commuting or family trips. 
@@ -30,8 +28,7 @@ const SingleCarItem = (props) => {
                             <h5 className="card-title">Color: {props.props.car_color}</h5>
                             <h5 className="card-title">Condition: Used, excellent condition</h5>                                      
                         </div>
-                    </div>
-          
+                    </div>         
                     <div className="card mb-4">
                         <ul className="list-group list-group-flush">
                             <li className="list-group-item">Price: {props.props.price}</li>

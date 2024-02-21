@@ -66,8 +66,10 @@ const FilterSection = () => {
           );
         })}
       </div>
+      <div className="searchResetContainer">
       <MainSearchButton />
       <ResetDataButton />
+      </div>     
     </div>
   );
 };

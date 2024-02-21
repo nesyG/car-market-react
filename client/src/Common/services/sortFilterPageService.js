@@ -11,7 +11,6 @@ export default async function handleSortFilterAndPages(rootStore) {
     query = query + `&sort=${sortData}`;
   }
   try {
-    console.log(params)
     const result = await callCarApi(token, "GET", {}, query, params);
     const data = await result.data;
     runInAction(() => {
