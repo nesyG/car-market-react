@@ -63,8 +63,25 @@ const ListingsSection = () => {
                 <button className="btn btn-light col-4 flex-grow-1" onClick={() => navigate(`/singleListing/${elem.id}`, { state: { ...elem, imageData: imageData[index]?.urls?.small } })}>More info</button>
                 <EditListing {...elem} />
                 <DeleteButton {...elem} />
-              </div>             
-              <img id="carImg" src={imageData[index]?.urls?.small} alt="Car Image" />           
+              </div>
+              <div className="image-container">
+                <img
+                  id="carImg"
+                  src={imageData[index]?.urls?.small}
+                  alt="Car Image"
+                  onLoad={(e) => {
+                    const spinners = document.querySelectorAll('.spinner2');
+                    spinners.forEach((spinner) => {
+                      spinner.style.display = 'none';
+                    });
+                  }}
+                />
+                <div className="spinner2">
+                  <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              </div>
               <div className="card-body">
                 <h4 className="card-title">{elem.car}</h4>
                 <ul className="list-group list-group-flush">

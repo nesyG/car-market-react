@@ -15,8 +15,7 @@ const Home = () => {
       <div className="filterListinContainer">
        <FilterSection />
         <NewListing />
-      </div>
-        
+      </div>        
         <ListingsSection />
       </div>
     </>
